@@ -70,20 +70,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Migrations\201912011928419_libbd.cs" />
-    <Compile Include="Migrations\201912011928419_libbd.designer.cs">
-      <DependentUpon>201912011928419_libbd.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201912012017334_AddData.cs" />
-    <Compile Include="Migrations\201912012017334_AddData.designer.cs">
-      <DependentUpon>201912012017334_AddData.cs</DependentUpon>
+    <Compile Include="Migrations\201912021241562_add.cs" />
+    <Compile Include="Migrations\201912021241562_add.designer.cs">
+      <DependentUpon>201912021241562_add.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ContextInitializer.cs" />
     <Compile Include="Repository\IReaderRepository.cs" />
     <Compile Include="Repository\ReaderRepository.cs" />
     <Compile Include="ViewModels\BooksReaderViewModel.cs" />
+    <Compile Include="ViewModels\CabinetReaderViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\RegistrationViewModel.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
+    <Compile Include="ViewModels\SingInViewModel.cs" />
     <Compile Include="Views\CatalogBookReader.xaml.cs">
       <DependentUpon>CatalogBookReader.xaml</DependentUpon>
     </Compile>
@@ -101,6 +101,9 @@
     </Compile>
     <Compile Include="Views\ReaderAbout.xaml.cs">
       <DependentUpon>ReaderAbout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Registration.xaml.cs">
+      <DependentUpon>Registration.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SingIn.xaml.cs">
       <DependentUpon>SingIn.xaml</DependentUpon>
@@ -231,6 +234,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Registration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\SingIn.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -254,11 +261,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201912011928419_libbd.resx">
-      <DependentUpon>201912011928419_libbd.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912012017334_AddData.resx">
-      <DependentUpon>201912012017334_AddData.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201912021241562_add.resx">
+      <DependentUpon>201912021241562_add.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

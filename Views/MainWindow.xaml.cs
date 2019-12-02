@@ -26,7 +26,7 @@ namespace Library.Views
         public MainWindow()
         {
             InitializeComponent();
-            //DataContext = new MainWindowViewModel();
+            DataContext = new MainWindowViewModel();
             //var db = new MyAppContext();
             //var configuration = new Migrations.Configuration();
             //configuration.RunSeed(db);
@@ -40,12 +40,6 @@ namespace Library.Views
             singIn.Show();
         }
 
-        private void Button_newUser(object sender, RoutedEventArgs e)
-        {
-            NewUser newUser = new NewUser();
-            this.Close();
-            newUser.Show();
-        }
 
 
         private void Button_About(object sender, RoutedEventArgs e)
@@ -53,5 +47,11 @@ namespace Library.Views
 
         }
 
+        private void Button_Registration(object sender, RoutedEventArgs e)
+        {
+            Registration registration = new Registration();
+            this.Close();
+            registration.Show();
+        }
     }
 }

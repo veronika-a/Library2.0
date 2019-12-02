@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Library.Models;
@@ -10,71 +11,39 @@ namespace Library.Repository
 {
     class BookRepository : IBookRepository
     {
-        private MyAppContext context;
-        public bool Delete(int id)
+        public void Delete(Book entity)
         {
-            Book book = context.Books.Find(id);
-            if (book != null)
-            {
-                context.Books.Remove(book);
-                return true;
-            }
-            else return false;
+            throw new NotImplementedException();
         }
 
         public IEnumerable<Book> GetAll()
         {
-            return context.Books;
+            throw new NotImplementedException();
+        }
+
+        public List<Book> GetAll(Expression<Func<Book, bool>> predicate)
+        {
+            throw new NotImplementedException();
         }
 
         public Book GetById(int id)
         {
-            return context.Books.Find(id);
+            throw new NotImplementedException();
         }
 
         public int GetCount()
         {
-            int count = 0;
-            foreach (Book book in context.Books)
-            {
-                count++;
-            }
-            return count;
+            throw new NotImplementedException();
         }
 
-        public void Insert(Book book)
+        public void Insert(Book entity)
         {
-            context.Books.Add(book);
+            throw new NotImplementedException();
         }
 
-        public void Update(Book book)
+        public void Update(Book entity)
         {
-            context.Entry(book).State = EntityState.Modified;
-        }
-
-
-        public void Save()
-        {
-            context.SaveChanges();
-        }
-        private bool disposed = false;
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!this.disposed)
-            {
-                if (disposing)
-                {
-                    context.Dispose();
-                }
-            }
-            this.disposed = true;
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+            throw new NotImplementedException();
         }
     }
 }

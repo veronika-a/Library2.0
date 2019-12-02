@@ -16,24 +16,22 @@ using System.Windows.Shapes;
 namespace Library.Views
 {
     /// <summary>
-    /// Логика взаимодействия для SingIn.xaml
+    /// Логика взаимодействия для Registration.xaml
     /// </summary>
-    public partial class SingIn : Window
+    public partial class Registration : Window
     {
-
-        SingInViewModel singInViewModel = new SingInViewModel();
-        public SingIn()
+        RegistrationViewModel registrationViewModel = new RegistrationViewModel();
+        public Registration()
         {
             InitializeComponent();
-            DataContext = new SingInViewModel();
+            DataContext = new RegistrationViewModel();
 
-            singInViewModel.Closing += (s, e) => this.Close();
+            registrationViewModel.Closing += (s, e) => this.Close();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            CabinetReader cabinetReader = new CabinetReader();
-            this.Close();
+
         }
     }
 }

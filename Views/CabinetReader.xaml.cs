@@ -1,4 +1,5 @@
-﻿using Library.ViewModels;
+﻿using Library.Models;
+using Library.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,10 +21,20 @@ namespace Library.Views
     /// </summary>
     public partial class CabinetReader : Window
     {
+        Reader reader;
+        public Reader Reader { get => reader; set => reader = value; }
+
         public CabinetReader()
         {
             InitializeComponent();
-           // DataContext = new CabinetReaderViewModel();
+           
+        }
+
+        public CabinetReader(ref Reader reader)
+        {
+            CabinetReaderViewModel cabinet= new CabinetReaderViewModel(reader);
+            DataContext = cabinet;
+            cabinet.Closing += (s, e) => this.Close();
         }
 
         private void Button_MyBooks(object sender, RoutedEventArgs e)
@@ -32,6 +43,7 @@ namespace Library.Views
             this.Close();
             booksReader.Show();
         }
+
 
 
     }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Library.ViewModels
 {
-    class MainWindowViewModel
+   public class MainWindowViewModel
     {
     }
 }

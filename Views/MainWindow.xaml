@@ -75,7 +75,7 @@
                 <StackPanel Orientation="Vertical" Margin="20 0 100 0">
 
                     <Button Content="Вход" Margin="10"   Style="{StaticResource BaseButton}" Click="Button_SingIn"/>
-                    <Button Content="Регистрация" Margin="10" Style="{StaticResource BaseButton}" Template="{StaticResource DefaultTemp}" Click="Button_newUser"/>
+                    <Button Content="Регистрация" Margin="10" Style="{StaticResource BaseButton}" Template="{StaticResource DefaultTemp}" Click="Button_Registration"/>
                     <Button Content="О нас" Margin="10" Style="{StaticResource BaseButton}" Click="Button_About"/>
 
                 </StackPanel>

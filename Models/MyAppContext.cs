@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library.Migrations;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -7,11 +8,14 @@ using System.Threading.Tasks;
 
 namespace Library.Models
 {
-     class MyAppContext : DbContext
+    public class MyAppContext : DbContext
     {
-        public MyAppContext() : base("DbConnection")
+        static MyAppContext() 
         {
+            Database.SetInitializer(new ContextInitializer());
         }
+        public MyAppContext() : base("LibraryDbConnection") { }
+
         public DbSet<Book> Books { get; set; }
         public DbSet<Reader> Readers { get; set; }
         public DbSet<Author> Authors { get; set; }

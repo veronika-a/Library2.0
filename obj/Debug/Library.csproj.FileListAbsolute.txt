@@ -56,4 +56,6 @@
 \\Mac\Home\Documents\trpz\Library\obj\Debug\Library.csproj.CopyComplete
 \\Mac\Home\Documents\trpz\Library\obj\Debug\Library.exe
 \\Mac\Home\Documents\trpz\Library\obj\Debug\Library.pdb
-\\Mac\Home\Documents\trpz\Library\obj\Debug\Library.Migrations.libbd.resources
+\\Mac\Home\Documents\trpz\Library\obj\Debug\Views\Registration.g.cs
+\\Mac\Home\Documents\trpz\Library\obj\Debug\Views\Registration.baml
+\\Mac\Home\Documents\trpz\Library\obj\Debug\Library.Migrations.add.resources
