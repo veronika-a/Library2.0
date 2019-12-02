@@ -1,0 +1,42 @@
+﻿<Window x:Class="Library.Views.EditBook"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Library.Views"
+        mc:Ignorable="d"
+        Title="EditBook" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition Width="6*"/>
+
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" >
+            <StackPanel
+            HorizontalAlignment="Center" 
+              VerticalAlignment="Center">
+
+                <TextBox Style="{StaticResource BaseTextBox}" Margin="0 10 0 0">Название</TextBox>
+                <TextBox Style="{StaticResource BaseTextBox}" Margin="0 10 0 0">Издание</TextBox>
+                <TextBox Style="{StaticResource BaseTextBox}" Margin="0 10 0 0">Жанр</TextBox>
+                <Button Content="Создать" Margin="0 10 0 0" Style="{StaticResource BaseButton}"/>
+                <Button Content="Добавить автора" Margin="0 10 0 0" Style="{StaticResource BaseButton}"/>
+                <Button Content="Назад" Margin="0 20 0 0" Style="{StaticResource BaseButton}"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Column="1">
+            <StackPanel  HorizontalAlignment="Center" 
+              VerticalAlignment="Center" Margin="0 20 0 0">
+                <ListBox Height="100">ListBox</ListBox>
+                <ListBox   Margin="0 10 0 20" Height="100">ListBox</ListBox>
+                <Button Content="Изменить авторов" Style="{StaticResource BaseButton}"/>
+                <Button Content="Изменить разделы" Margin="0 20 0 0" Style="{StaticResource BaseButton}"/>
+
+            </StackPanel>
+
+
+        </Grid>
+    </Grid>
+</Window>
