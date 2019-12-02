@@ -18,6 +18,8 @@ namespace Library.Models
         private DateTime? dateTook;
         private DateTime? dateReturn;
 
+       
+
         public int Id { get => id; set => id = value; }
         public DateTime? DateOrdered { get => dateOrdered; set => dateOrdered = value; }
         public DateTime? DateTook { get => dateTook; set => dateTook = value; }

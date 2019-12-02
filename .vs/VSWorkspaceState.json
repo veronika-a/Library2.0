@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\ViewModels"
+    "\\ViewModels",
+    "\\Views"
   ],
+  "SelectedNode": "\\Views\\CabinetReader.xaml.cs",
   "PreviewInSolutionExplorer": false
 }

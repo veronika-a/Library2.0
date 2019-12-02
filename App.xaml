@@ -8,8 +8,8 @@
             <Style TargetType="Button" x:Key="BaseButton">
 
                 <Setter Property="BorderThickness" Value="0"></Setter>
-                <Setter Property="Background" Value="DimGray"></Setter>
-                <Setter Property="Foreground" Value="White"></Setter>
+                <Setter Property="Background" Value="Orange"></Setter>
+                <Setter Property="Foreground" Value="Black"></Setter>
                 <Setter Property="Padding" Value="10"></Setter>
                 <Setter Property="FontSize" Value="20"></Setter>
                 <Setter Property="MinWidth" Value="200"></Setter>

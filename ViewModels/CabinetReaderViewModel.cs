@@ -14,50 +14,48 @@ namespace Library.ViewModels
     public class CabinetReaderViewModel : INotifyPropertyChanged
     {
         private Reader reader;
+
+        private string email;
+        private string name;
+        private string phone;
+        private string date;
+
         public CabinetReaderViewModel(Reader reader)
         {
             Reader = reader;
+
         }
 
         public Reader Reader { get => reader; set => reader = value; }
+        public string Email { get => email; set => email = value; }
+        public string Name { get => name; set => name = value; }
+        public string Phone { get => phone; set => phone = value; }
+        public string Date { get => date; set => date = value; }
 
-        private RelayCommand _signUp;
         public event EventHandler Closing;
 
         public bool Validated = false;
 
-        
 
-        //public RelayCommand PasswordChangedCommand
+        //void Reload()
         //{
-        //    get
+        //    using (MyAppContext appContext = new MyAppContext())
         //    {
-        //        return _addPaswordChangedCommand ??
-        //            (_addPaswordChangedCommand = new RelayCommand(obj =>
-        //            {
-        //                PasswordBox passwordBox = obj as PasswordBox;
-        //                Password = passwordBox.Password;
-        //            }
-        //            ));
+        //        cabinetReaderViewModel = new CabinetReaderViewModel(reader);
+        //        readerRepository = new ReaderRepository(appContext);
+
+        //        // foreach (MessageModel model in messagesRepository.GetAll(i => i.ChatID == SelectedChat.Id))
+
+        //        Email = reader.Email;
+        //        Phone = reader.Phone;
+        //        Name = reader.FirstName +" "+ reader.SecondName;
+        //        Date = reader.Date.ToString();
+
+
         //    }
         //}
 
 
-
-        //public RelayCommand ToLoginPageCommand
-        //{
-        //    get
-        //    {
-        //        return _toLoginPageCommand ??
-        //            (_toLoginPageCommand = new RelayCommand(obj =>
-        //            {
-        //                ClosingRequest?.Invoke(this, EventArgs.Empty);
-        //            }));
-
-
-        //    }
-        //}
-       
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string prop)

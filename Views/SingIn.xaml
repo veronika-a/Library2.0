@@ -22,10 +22,11 @@
                 FontSize="24"
                 Text="Твоя библиотека"
                 />
+                <TextBlock FontSize="18" Margin="0 20 0 0">Login</TextBlock>
                 <TextBox x:Name="Email" Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"  Style="{StaticResource BaseTextBox}" Margin="0 20 0 0"/>
                 <TextBlock FontSize="18" Margin="0 20 0 0">Password</TextBlock>
                 <TextBox x:Name="Password" Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource BaseTextBox}" Margin="0 10 0 0"/>
-                <CheckBox Margin="0 20 0 0" IsChecked="True" Name="check">Согласен с условиями</CheckBox>
+               
                 <Button Content="Вход" Margin="0 20 0 0"  Command="{Binding SignIn}"
                 IsEnabled="{Binding Path=Validated, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                  Style="{StaticResource BaseButton}" />

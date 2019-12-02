@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-\\mac\Home\Documents\trpz\Library\obj\Release\
+\\mac\HOME\Documents\trpz\Library\obj\Release\
 Library
 none
 false
 TRACE
-\\mac\Home\Documents\trpz\Library\App.xaml
-20-11964275
+\\mac\HOME\Documents\trpz\Library\App.xaml
+211031004330
 
-36477315612
-161512855262
-Views\CatalogBookReader.xaml;Views\BookAbout.xaml;Views\BookAuthor.xaml;Views\BooksReader.xaml;Views\CabinetAdmin.xaml;Views\CabinetReader.xaml;Views\CatalogBooksAdmin.xaml;Views\CatalogReaders.xaml;Views\ChangePassword.xaml;Views\EditAuthor.xaml;Views\EditBook.xaml;Views\EditСhapter.xaml;Views\MainWindow.xaml;Views\NewBook.xaml;Views\NewUser.xaml;Views\Orders.xaml;Views\ProfileSettingsReader.xaml;Views\ReaderAbout.xaml;Views\SingIn.xaml;Views\Сhapters.xaml;
+48-985171934
+17-195369050
+Views\CatalogBookReader.xaml;Views\BookAbout.xaml;Views\BookAuthor.xaml;Views\BooksReader.xaml;Views\CabinetAdmin.xaml;Views\CabinetReader.xaml;Views\CatalogBooksAdmin.xaml;Views\CatalogReaders.xaml;Views\ChangePassword.xaml;Views\EditAuthor.xaml;Views\EditBook.xaml;Views\EditСhapter.xaml;Views\MainWindow.xaml;Views\NewBook.xaml;Views\NewUser.xaml;Views\Orders.xaml;Views\ProfileSettingsReader.xaml;Views\ReaderAbout.xaml;Views\Registration.xaml;Views\SingIn.xaml;Views\Сhapters.xaml;
 
 True
 

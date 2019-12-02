@@ -21,9 +21,8 @@ namespace Library.Views
     /// </summary>
     public partial class CabinetReader : Window
     {
-        Reader reader;
-        public Reader Reader { get => reader; set => reader = value; }
 
+        CabinetReaderViewModel cabinet;
         public CabinetReader()
         {
             InitializeComponent();
@@ -32,9 +31,11 @@ namespace Library.Views
 
         public CabinetReader(ref Reader reader)
         {
-            CabinetReaderViewModel cabinet= new CabinetReaderViewModel(reader);
+            InitializeComponent();
+
+            cabinet= new CabinetReaderViewModel(reader);
             DataContext = cabinet;
-            cabinet.Closing += (s, e) => this.Close();
+            cabinet.Closing += (s, e) => Close();
         }
 
         private void Button_MyBooks(object sender, RoutedEventArgs e)

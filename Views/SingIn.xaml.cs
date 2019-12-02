@@ -25,15 +25,11 @@ namespace Library.Views
         public SingIn()
         {
             InitializeComponent();
-            DataContext = new SingInViewModel();
+            DataContext = singInViewModel;
 
             singInViewModel.Closing += (s, e) => this.Close();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            CabinetReader cabinetReader = new CabinetReader();
-            this.Close();
-        }
+      
     }
 }

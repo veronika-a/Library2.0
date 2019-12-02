@@ -23,10 +23,12 @@ namespace Library.Views
     /// </summary>
     public partial class MainWindow : Window
     {
+        MainWindowViewModel DataContext;
         public MainWindow()
         {
             InitializeComponent();
             DataContext = new MainWindowViewModel();
+            DataContext.Closing += (s, e) => Close();
             //var db = new MyAppContext();
             //var configuration = new Migrations.Configuration();
             //configuration.RunSeed(db);
