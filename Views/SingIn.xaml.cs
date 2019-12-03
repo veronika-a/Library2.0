@@ -30,6 +30,14 @@ namespace Library.Views
             singInViewModel.Closing += (s, e) => this.Close();
         }
 
-      
+
+
+        private void Button_Registration(object sender, RoutedEventArgs e)
+        {
+            Registration registration = new Registration();
+            registration.Show();
+            this.Close();
+
+        }
     }
 }
