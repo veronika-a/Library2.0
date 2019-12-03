@@ -10,6 +10,7 @@
     <!--<Window.DataContext>
         <vm:MainWindowViewModel></vm:MainWindowViewModel>
     </Window.DataContext>-->
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="4*"/>
@@ -76,7 +77,7 @@
 
                     <Button Content="Вход" Margin="10"   Style="{StaticResource BaseButton}" Click="Button_SingIn"/>
                     <Button Content="Регистрация" Margin="10" Style="{StaticResource BaseButton}"  Click="Button_Registration"/>
-                    <Button Content="О нас" Margin="10" Style="{StaticResource BaseButton}" Click="Button_About"/>
+                    <Button Content="О нас" x:Name="helloButton"  BorderThickness="0"  Background="Orange" Margin="10"/>
 
                 </StackPanel>
             </Grid>

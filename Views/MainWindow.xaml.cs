@@ -12,6 +12,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -26,14 +27,33 @@ namespace Library.Views
         MainWindowViewModel DataContext;
         public MainWindow()
         {
+            
             InitializeComponent();
             DataContext = new MainWindowViewModel();
             DataContext.Closing += (s, e) => Close();
-            //var db = new MyAppContext();
-            //var configuration = new Migrations.Configuration();
-            //configuration.RunSeed(db);
-        }
 
+            // анимация для ширины
+            DoubleAnimation widthAnimation = new DoubleAnimation();
+            widthAnimation.From = helloButton.ActualWidth;
+            widthAnimation.To = 250;
+            widthAnimation.Duration = TimeSpan.FromSeconds(5);
+            
+            
+            // анимация для высоты
+            DoubleAnimation heightAnimation = new DoubleAnimation();
+            heightAnimation.From = helloButton.ActualHeight;
+            heightAnimation.To = 40;
+            heightAnimation.Duration = TimeSpan.FromSeconds(5);
+
+            helloButton.BeginAnimation(Button.WidthProperty, widthAnimation);
+            helloButton.BeginAnimation(Button.HeightProperty, heightAnimation);
+
+
+        }
+        private void ButtonAnimation_Completed(object sender, EventArgs e)
+        {
+            MessageBox.Show("Анимация завершена");
+        }
 
         private void Button_SingIn(object sender, RoutedEventArgs e)
         {
