@@ -13,10 +13,6 @@ namespace Library.ViewModels
     {
         private Reader reader;
 
-        private string email;
-        private string name;
-        private string phone;
-        private string date;
 
         public CabinetAdminViewModel(Reader reader)
         {
@@ -25,17 +21,11 @@ namespace Library.ViewModels
         }
 
         public Reader Reader { get => reader; set => reader = value; }
-        public string Email { get => email; set => email = value; }
-        public string Name { get => name; set => name = value; }
-        public string Phone { get => phone; set => phone = value; }
-        public string Date { get => date; set => date = value; }
-
         public event EventHandler Closing;
 
         public bool Validated = false;
 
-
-       
+        
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string prop)
