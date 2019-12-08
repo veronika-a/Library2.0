@@ -87,15 +87,23 @@ namespace Library.ViewModels
 
                             if (reader != null)
                             {
-                                // MessageBox.Show("User already exists");
-                                // appContext.SaveChanges();
+                                if (reader.Email != "admin")
+                                {
+                                    // MessageBox.Show("User already exists");
+                                    // appContext.SaveChanges();
 
-                                MessageBox.Show($"Welcome, {reader.Email} !", "Welcome", MessageBoxButton.OK, MessageBoxImage.Information);
+                                    MessageBox.Show($"Welcome, {reader.Email} !", "Welcome", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                                CabinetReader cabinetReader = new CabinetReader( ref reader);
-                                cabinetReader.Show();
-                                Closing?.Invoke(this, EventArgs.Empty);
-
+                                    CabinetReader cabinetReader = new CabinetReader(ref reader);
+                                    cabinetReader.Show();
+                                    Closing?.Invoke(this, EventArgs.Empty);
+                                }
+                                else
+                                {
+                                    CabinetAdmin cabinetAdmin = new CabinetAdmin(ref reader);
+                                    cabinetAdmin.Show();
+                                    Closing?.Invoke(this, EventArgs.Empty);
+                                }
                             }
 
 
