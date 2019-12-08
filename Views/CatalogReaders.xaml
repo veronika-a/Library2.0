@@ -21,19 +21,18 @@
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
-                <TextBlock FontSize="24" HorizontalAlignment="Center">Заявки</TextBlock>
+                <TextBlock FontSize="24" HorizontalAlignment="Center">Читатели</TextBlock>
             </Grid>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="8*"></ColumnDefinition>
-                    <ColumnDefinition Width="4*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <TextBox Style="{StaticResource BaseTextBox}" FontSize="14">Поиск</TextBox>
+                    <TextBox x:Name="tbSearch" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 0" Style="{StaticResource BaseTextBox}" FontSize="14"/>
                 </Grid>
-                <Grid Grid.Column="1">
-                    <Button>Поиск</Button>
-                </Grid>
+               <!-- <Grid Grid.Column="1">
+                    <Button Command="{Binding Search}" >Поиск</Button>
+                </Grid>-->
 
 
             </Grid>
@@ -43,7 +42,13 @@
                     <ColumnDefinition Width="27*"/>
                     <ColumnDefinition Width="79*"/>
                 </Grid.ColumnDefinitions>
-                <ListBox Margin="10,10,9.5,10" Grid.ColumnSpan="3">ListBox</ListBox>
+                <ListBox Margin="10,10,9.5,10" Grid.ColumnSpan="3" SelectedItem="{Binding Path=SelectedReader, Mode=TwoWay}" ItemsSource="{Binding Readers, UpdateSourceTrigger=PropertyChanged}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Email}"></TextBlock>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </Grid>
 
         </Grid>
