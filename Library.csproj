@@ -79,6 +79,7 @@
     <Compile Include="Repository\IReaderRepository.cs" />
     <Compile Include="Repository\ReaderRepository.cs" />
     <Compile Include="ViewModels\BooksReaderViewModel.cs" />
+    <Compile Include="ViewModels\CabinetAdminViewModel.cs" />
     <Compile Include="ViewModels\CabinetReaderViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\readerRepository.cs" />
