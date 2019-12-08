@@ -20,6 +20,7 @@
                 Margin="50 0 20 0"
                 Orientation="Vertical"
                 VerticalAlignment="Center">
+                <TextBlock FontSize="20" Foreground="SaddleBrown"  Margin="0 10 0 0">Личный кабинет</TextBlock>
                 <TextBlock x:Name="email" DataContext ="{Binding Reader}" Text="{Binding Email}"  Style="{StaticResource BaseTextBlock}"/>
                 <TextBlock x:Name="name" DataContext ="{Binding Reader}"  Text="{Binding Name}"  Margin="0 10 0 0" Style="{StaticResource BaseTextBlock}"/>
                 <TextBlock x:Name="phone" DataContext ="{Binding Reader}"  Text="{Binding Phone}"   Margin="0 10 0 0" Style="{StaticResource BaseTextBlock}"/>

@@ -30,7 +30,7 @@
                 <Button Content="Вход" Margin="0 20 0 0"  Command="{Binding SignIn}"
                 IsEnabled="{Binding Path=Validated, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                  Style="{StaticResource BaseButton}" />
-                <Button Content="Назад" Margin="0 40 0 0" Style="{StaticResource BaseButton}"/>
+                <Button Content="Назад" Margin="0 40 0 0" Style="{StaticResource BaseButton}" Click="Button_Registration"/>
             </StackPanel>
         </Grid>
     </Grid>

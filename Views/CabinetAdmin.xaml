@@ -18,13 +18,12 @@
                 HorizontalAlignment="Center"  
                 VerticalAlignment="Center"
                 Margin="0">
-                <TextBlock FontSize="18">Читатель</TextBlock>
-                <ComboBox Height="30"></ComboBox>
-                <TextBlock FontSize="18">Книга</TextBlock>
-                <ComboBox Height="30"></ComboBox>
-                <Button Content="Видать" Margin="0 20 0 0" Style="{StaticResource BaseButton}"/>
-                <Button Content="Возврат" Margin="0 20 0 0" Style="{StaticResource BaseButton}"/>
-                <Button Content="Назад"  Margin="0 40 0 0" Style="{StaticResource BaseButton}"/>
+                <TextBlock FontSize="24" Text="Личный Кабинет" />
+                <TextBlock FontSize="18" Text="ФИО" />
+                <Button Content="Пользователи" Margin="0 20 0 0" Style="{StaticResource BaseButton}"/>
+                <Button Content="Книги" Margin="0 20 0 0" Style="{StaticResource BaseButton}"/>
+                <Button Content="Выдача" Margin="0 20 0 0" Style="{StaticResource BaseButton}"/>
+                <Button Content="Выход"  Margin="0 40 0 0" Style="{StaticResource BaseButton}"/>
 
             </StackPanel>
         </Grid>
@@ -54,11 +53,12 @@
 
             </Grid>
             <Grid Grid.Row="2">
-                <StackPanel>
-                    <ListBox Margin="10" Height="100">ListBox</ListBox>
-                    <ListBox Margin="10" Height="100">ListBox</ListBox>
-                </StackPanel>
-
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="93*"/>
+                    <ColumnDefinition Width="27*"/>
+                    <ColumnDefinition Width="79*"/>
+                </Grid.ColumnDefinitions>
+                <ListBox Margin="10,10,9.5,10" Grid.ColumnSpan="3">ListBox</ListBox>
             </Grid>
 
         </Grid>

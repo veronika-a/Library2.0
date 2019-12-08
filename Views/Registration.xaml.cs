@@ -24,14 +24,17 @@ namespace Library.Views
         public Registration()
         {
             InitializeComponent();
-            DataContext = new RegistrationViewModel();
+            DataContext = registrationViewModel;
 
             registrationViewModel.Closing += (s, e) => this.Close();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+       
+        private void Button_Back(object sender, RoutedEventArgs e)
         {
-
+            MainWindow mainWindow = new MainWindow();
+            this.Close();
+            mainWindow.Show();
         }
     }
 }

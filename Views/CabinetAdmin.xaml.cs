@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Library.Models;
+using Library.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,16 @@ namespace Library.Views
     /// </summary>
     public partial class CabinetAdmin : Window
     {
-        public CabinetAdmin()
+        CabinetAdminViewModel cabinet;
+
+        public CabinetAdmin(ref Reader reader)
         {
             InitializeComponent();
+
+            cabinet = new CabinetAdminViewModel(reader);
+            DataContext = cabinet;
+            cabinet.Closing += (s, e) => Close();
         }
+
     }
 }

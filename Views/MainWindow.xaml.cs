@@ -32,21 +32,20 @@ namespace Library.Views
             DataContext = new MainWindowViewModel();
             DataContext.Closing += (s, e) => Close();
 
-            // анимация для ширины
-            DoubleAnimation widthAnimation = new DoubleAnimation();
-            widthAnimation.From = helloButton.ActualWidth;
-            widthAnimation.To = 250;
-            widthAnimation.Duration = TimeSpan.FromSeconds(5);
+            //// анимация для ширины
+            //DoubleAnimation widthAnimation = new DoubleAnimation();
+            //widthAnimation.From = helloButton.ActualWidth;
+            //widthAnimation.To = 250;
+            //widthAnimation.Duration = TimeSpan.FromSeconds(5);
             
-            
-            // анимация для высоты
-            DoubleAnimation heightAnimation = new DoubleAnimation();
-            heightAnimation.From = helloButton.ActualHeight;
-            heightAnimation.To = 40;
-            heightAnimation.Duration = TimeSpan.FromSeconds(5);
+            //// анимация для высоты
+            //DoubleAnimation heightAnimation = new DoubleAnimation();
+            //heightAnimation.From = helloButton.ActualHeight;
+            //heightAnimation.To = 40;
+            //heightAnimation.Duration = TimeSpan.FromSeconds(5);
 
-            helloButton.BeginAnimation(Button.WidthProperty, widthAnimation);
-            helloButton.BeginAnimation(Button.HeightProperty, heightAnimation);
+            //helloButton.BeginAnimation(Button.WidthProperty, widthAnimation);
+            //helloButton.BeginAnimation(Button.HeightProperty, heightAnimation);
 
 
         }
