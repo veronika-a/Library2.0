@@ -74,6 +74,14 @@
     <Compile Include="Migrations\201912021241562_add.designer.cs">
       <DependentUpon>201912021241562_add.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912081005467_fk.cs" />
+    <Compile Include="Migrations\201912081005467_fk.designer.cs">
+      <DependentUpon>201912081005467_fk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912081012592_fk2.cs" />
+    <Compile Include="Migrations\201912081012592_fk2.designer.cs">
+      <DependentUpon>201912081012592_fk2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ContextInitializer.cs" />
     <Compile Include="Repository\IReaderRepository.cs" />
@@ -81,6 +89,7 @@
     <Compile Include="ViewModels\BooksReaderViewModel.cs" />
     <Compile Include="ViewModels\CabinetAdminViewModel.cs" />
     <Compile Include="ViewModels\CabinetReaderViewModel.cs" />
+    <Compile Include="ViewModels\CatalogReadersViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\readerRepository.cs" />
     <Compile Include="ViewModels\RegistrationViewModel.cs" />
@@ -265,6 +274,12 @@
     </Compile>
     <EmbeddedResource Include="Migrations\201912021241562_add.resx">
       <DependentUpon>201912021241562_add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912081005467_fk.resx">
+      <DependentUpon>201912081005467_fk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912081012592_fk2.resx">
+      <DependentUpon>201912081012592_fk2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
