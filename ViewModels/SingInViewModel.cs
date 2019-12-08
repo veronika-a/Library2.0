@@ -41,35 +41,6 @@ namespace Library.ViewModels
             }
         }
 
-        //public RelayCommand PasswordChangedCommand
-        //{
-        //    get
-        //    {
-        //        return _addPaswordChangedCommand ??
-        //            (_addPaswordChangedCommand = new RelayCommand(obj =>
-        //            {
-        //                PasswordBox passwordBox = obj as PasswordBox;
-        //                Password = passwordBox.Password;
-        //            }
-        //            ));
-        //    }
-        //}
-
-
-
-        //public RelayCommand ToLoginPageCommand
-        //{
-        //    get
-        //    {
-        //        return _toLoginPageCommand ??
-        //            (_toLoginPageCommand = new RelayCommand(obj =>
-        //            {
-        //                ClosingRequest?.Invoke(this, EventArgs.Empty);
-        //            }));
-
-
-        //    }
-        //}
         public RelayCommand SignIn
         {
             get
