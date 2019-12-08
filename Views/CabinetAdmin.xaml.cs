@@ -32,5 +32,11 @@ namespace Library.Views
             cabinet.Closing += (s, e) => Close();
         }
 
+        private void Button_CalalogReaders(object sender, RoutedEventArgs e)
+        {
+            CatalogReaders catalogReaders = new CatalogReaders();
+            this.Close();
+            catalogReaders.Show();
+        }
     }
 }
