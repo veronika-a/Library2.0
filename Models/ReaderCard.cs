@@ -10,13 +10,15 @@ namespace Library.Models
         [Key]
         [Column("Id")]
         private int id;
-        [ForeignKey("Reader")]
         private int readerid;
-        [ForeignKey("Book")]
         private int bookid;
         private DateTime? dateOrdered;
         private DateTime? dateTook;
         private DateTime? dateReturn;
+        [ForeignKey("readerid")]
+        private Reader reader;
+        [ForeignKey("bookid")]
+        private Book book;
 
        
 
@@ -26,5 +28,7 @@ namespace Library.Models
         public DateTime? DateReturn { get => dateReturn; set => dateReturn = value; }
         public int ReaderId { get => readerid; set => readerid = value; }
         public int BookId { get => bookid; set => bookid = value; }
+        public Reader Reader { get => reader; set => reader = value; }
+        public Book Book { get => book; set => book = value; }
     }
 }
