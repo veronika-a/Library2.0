@@ -12,7 +12,6 @@ namespace Library.ViewModels
 {
     public class CatalogReadersViewModel : INotifyPropertyChanged
     {
-        // ObservableCollection<UserModel> _users;
         //ObservableCollection<UserModel> selectedUsers;
         public event EventHandler Closing;
 
