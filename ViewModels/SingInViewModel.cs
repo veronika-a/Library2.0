@@ -60,9 +60,6 @@ namespace Library.ViewModels
                             {
                                 if (reader.Email != "admin")
                                 {
-                                    // MessageBox.Show("User already exists");
-                                    // appContext.SaveChanges();
-
                                     MessageBox.Show($"Welcome, {reader.Email} !", "Welcome", MessageBoxButton.OK, MessageBoxImage.Information);
 
                                     CabinetReader cabinetReader = new CabinetReader(ref reader);
