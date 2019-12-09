@@ -13,7 +13,7 @@ namespace Library.ViewModels
     {
         private Reader reader;
 
-
+        public CabinetAdminViewModel() {}
         public CabinetAdminViewModel(Reader reader)
         {
             Reader = reader;
