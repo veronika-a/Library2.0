@@ -1,5 +1,6 @@
 ﻿using Library.Models;
 using Library.Repository;
+using Library.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,7 +16,8 @@ namespace Library.ViewModels
     {
         //ObservableCollection<UserModel> selectedUsers;
         public event EventHandler Closing;
-
+        private RelayCommand _Edit;
+        private RelayCommand _Delete;
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string prop)
@@ -37,6 +39,16 @@ namespace Library.ViewModels
         public CatalogBooksAdminViewModel()
         {
             Books = new ObservableCollection<Book>(GetBooks());
+        }
+        Book selectedBook;
+        public Book SelectedBook
+        {
+            get { return selectedBook; }
+            set
+            {
+                selectedBook = value;
+                OnPropertyChanged(nameof(SelectedBook));
+            }
         }
 
         List<Book> GetBooks()
@@ -60,6 +72,42 @@ namespace Library.ViewModels
                 // || i.FirstName.Contains(Search)
                 // || i.SecondName.Contains(Search))); ;
 
+            }
+        }
+        public RelayCommand Edit
+        {
+            get
+            {
+
+                return _Edit ??
+                    (_Edit = new RelayCommand(obj =>
+                    {
+                        using (MyAppContext appContext = new MyAppContext())
+                        {
+                            BookRepository bookRepository = new BookRepository(appContext);
+                            var book = selectedBook;
+                        }
+                    }));
+            }
+        }
+        public RelayCommand Delete
+        {
+            get
+            {
+
+                return _Delete ??
+                    (_Delete = new RelayCommand(obj =>
+                    {
+                        using (MyAppContext appContext = new MyAppContext())
+                        {
+                            BookRepository bookRepository = new BookRepository(appContext);
+                            var book = selectedBook;
+                            bookRepository.Delete(book);
+                            CatalogBooksAdmin catalog = new CatalogBooksAdmin();
+                            catalog.Show();
+                            Closing?.Invoke(this, EventArgs.Empty);
+                        }
+                    }));
             }
         }
     }
