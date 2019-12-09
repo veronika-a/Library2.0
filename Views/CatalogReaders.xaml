@@ -33,8 +33,6 @@
                <!-- <Grid Grid.Column="1">
                     <Button Command="{Binding Search}" >Поиск</Button>
                 </Grid>-->
-
-
             </Grid>
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
@@ -62,7 +60,7 @@
                 <Button Content="Добавить" Margin="0 20 0 0" Style="{StaticResource BaseButton}"/>
                 <Button Content="Изменить" Margin="0 20 0 0" Style="{StaticResource BaseButton}"/>
                 <Button Content="Удалить" Margin="0 20 0 0" Style="{StaticResource BaseButton}"/>
-                <Button Content="Назад"  Margin="0 40 0 0" Style="{StaticResource BaseButton}"/>
+                <Button Content="Назад"  Margin="0 40 0 0" Style="{StaticResource BaseButton}" Click="Button_Back"/>
 
             </StackPanel>
         </Grid>
