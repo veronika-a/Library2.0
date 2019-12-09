@@ -29,5 +29,12 @@ namespace Library.Views
 
             catalog.Closing += (s, e) => this.Close();
         }
+
+        private void Button_Back(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            this.Close();
+            mainWindow.Show();
+        }
     }
 }
