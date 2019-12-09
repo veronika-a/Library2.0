@@ -31,12 +31,34 @@ namespace Library.Views
             DataContext = cabinet;
             cabinet.Closing += (s, e) => Close();
         }
+        public CabinetAdmin()
+        {
+            InitializeComponent();
+
+            cabinet = new CabinetAdminViewModel();
+            DataContext = cabinet;
+            cabinet.Closing += (s, e) => Close();
+        }
 
         private void Button_CalalogReaders(object sender, RoutedEventArgs e)
         {
             CatalogReaders catalogReaders = new CatalogReaders();
             this.Close();
             catalogReaders.Show();
+        }
+
+        private void Button_CalalogBookAdmin(object sender, RoutedEventArgs e)
+        {
+            CatalogBooksAdmin catalogBooksAdmin = new CatalogBooksAdmin();
+            this.Close();
+            catalogBooksAdmin.Show();
+        }
+
+        private void Button_Back(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            this.Close();
+            mainWindow.Show();
         }
     }
 }
