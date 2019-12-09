@@ -34,8 +34,8 @@ namespace Library.Views
 
         private void Button_Registration(object sender, RoutedEventArgs e)
         {
-            Registration registration = new Registration();
-            registration.Show();
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
             this.Close();
 
         }
