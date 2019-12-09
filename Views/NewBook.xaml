@@ -16,21 +16,26 @@
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"></RowDefinition>
-                <RowDefinition Height="2*"></RowDefinition>
                 <RowDefinition Height="8*"></RowDefinition>
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
                 <TextBlock FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"> Новая книга</TextBlock>
             </Grid>
-            <Grid Grid.Row="1">
-                <TextBlock FontSize="18" Margin="30 0 30 0" VerticalAlignment="Center"> Описание</TextBlock>
-            </Grid>
-            <Grid Grid.Row="2">
+            <Grid Grid.Row="1" >
+                <StackPanel
+            HorizontalAlignment="Center" 
+             >
+                    <TextBlock FontSize="18" VerticalAlignment="Center"> Жанр</TextBlock>
+                    <TextBox Style="{StaticResource BaseTextBox}" Text="{Binding Ganre, UpdateSourceTrigger=PropertyChanged}"/>
 
-                <ListBox Margin="30 0 30 0" >
-                    <TextBlock Text="{Binding Path=Message}"></TextBlock>
-                </ListBox>
+                    <TextBlock FontSize="18" VerticalAlignment="Center"  Width="200"> Издательство</TextBlock>
+                    <TextBox Style="{StaticResource BaseTextBox}" Text="{Binding Publisher, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock FontSize="18" VerticalAlignment="Center"> Год издания</TextBlock>
+                    <TextBox Style="{StaticResource BaseTextBox}" Text="{Binding PublicationDate, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock FontSize="18" VerticalAlignment="Center">Описание</TextBlock>
+                    <TextBox Style="{StaticResource BaseTextBox}" Text="{Binding about, UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
             </Grid>
 
         </Grid>
@@ -38,13 +43,13 @@
             <StackPanel
             HorizontalAlignment="Center" 
               VerticalAlignment="Center">
-
-                <TextBox Style="{StaticResource BaseTextBox}" Margin="0 10 0 0" Text="" />
-                <TextBox Style="{StaticResource BaseTextBox}" Margin="0 10 0 0" Text="{Binding Path=CurrentBook.Title, Mode=TwoWay}"/>
-                <TextBox Style="{StaticResource BaseTextBox}" Margin="0 10 0 0" Text="{Binding Path=CurrentBook.Author, Mode=TwoWay}"/>
-                <Button Content="Создать" Margin="0 10 0 0" Style="{StaticResource BaseButton}" Command="{Binding Path=SaveCommand}"/>
+                <TextBlock FontSize="18" VerticalAlignment="Center"> Название</TextBlock>
+                <TextBox Style="{StaticResource BaseTextBox}" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"/>
+               <TextBlock FontSize="18" VerticalAlignment="Center">Переводчик</TextBlock>
+                <TextBox Style="{StaticResource BaseTextBox}" Text="{Binding CoverArtist, UpdateSourceTrigger=PropertyChanged}" />
+                <Button Content="Создать" Margin="0 20 0 0" Style="{StaticResource BaseButton}" Command="{Binding SaveCommand}"/>
                 <Button Content="Добавить автора" Margin="0 10 0 0" Style="{StaticResource BaseButton}"/>
-                <Button Content="Назад" Margin="0 20 0 0" Style="{StaticResource BaseButton}"/>
+                <Button Content="Назад" Margin="0 10 0 0" Style="{StaticResource BaseButton}" Click="Button_Back"/>
             </StackPanel>
         </Grid>
     </Grid>
