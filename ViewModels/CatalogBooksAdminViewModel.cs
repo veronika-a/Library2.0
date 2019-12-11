@@ -86,6 +86,9 @@ namespace Library.ViewModels
                         {
                             BookRepository bookRepository = new BookRepository(appContext);
                             var book = selectedBook;
+                            EditBook editBook = new EditBook(ref book);
+                            editBook.Show();
+                            Closing?.Invoke(this, EventArgs.Empty);
                         }
                     }));
             }
@@ -110,5 +113,6 @@ namespace Library.ViewModels
                     }));
             }
         }
+
     }
 }

@@ -12,31 +12,50 @@
             <ColumnDefinition Width="6*"/>
 
         </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
 
-        <Grid Grid.Column="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="8*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <TextBlock FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center">Редактировать</TextBlock>
+            </Grid>
+            <Grid Grid.Row="1" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="335*"/>
+                    <ColumnDefinition Width="62*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel
+            HorizontalAlignment="Center" Margin="99,0,36.319,0" 
+             >
+                    <TextBlock FontSize="18" VerticalAlignment="Center"> Жанр</TextBlock>
+                    <TextBox Style="{StaticResource BaseTextBox}" Text="{Binding Ganre, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBlock FontSize="18" VerticalAlignment="Center"  Width="200"> Издательство</TextBlock>
+                    <TextBox Style="{StaticResource BaseTextBox}" Text="{Binding Publisher, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock FontSize="18" VerticalAlignment="Center"> Год издания</TextBlock>
+                    <TextBox Style="{StaticResource BaseTextBox}" Text="{Binding PublicationDate, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock FontSize="18" VerticalAlignment="Center">Описание</TextBlock>
+                    <TextBox Style="{StaticResource BaseTextBox}" Text="{Binding about, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock FontSize="18" VerticalAlignment="Center">Переводчик</TextBlock>
+                    <TextBox Style="{StaticResource BaseTextBox}" Text="{Binding CoverArtist, UpdateSourceTrigger=PropertyChanged}" />
+
+                </StackPanel>
+            </Grid>
+
+        </Grid>
+        <Grid Grid.Column="1" >
             <StackPanel
             HorizontalAlignment="Center" 
               VerticalAlignment="Center">
-
-                <TextBox Style="{StaticResource BaseTextBox}" Margin="0 10 0 0">Название</TextBox>
-                <TextBox Style="{StaticResource BaseTextBox}" Margin="0 10 0 0">Издание</TextBox>
-                <TextBox Style="{StaticResource BaseTextBox}" Margin="0 10 0 0">Жанр</TextBox>
-                <Button Content="Создать" Margin="0 10 0 0" Style="{StaticResource BaseButton}"/>
-                <Button Content="Добавить автора" Margin="0 10 0 0" Style="{StaticResource BaseButton}"/>
-                <Button Content="Назад" Margin="0 20 0 0" Style="{StaticResource BaseButton}"/>
+                <TextBlock FontSize="18" VerticalAlignment="Center"> Название</TextBlock>
+                <TextBox Style="{StaticResource BaseTextBox}" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Content="Сохранить" Margin="0 20 0 0" Style="{StaticResource BaseButton}" Command="{Binding SaveCommand}"/>
+                <Button Content="Редактировать автора" Margin="0 10 0 0" Style="{StaticResource BaseButton}"/>
+                <Button Content="Назад" Margin="0 10 0 0" Style="{StaticResource BaseButton}" Click="Button_Back"/>
             </StackPanel>
-        </Grid>
-        <Grid Grid.Column="1">
-            <StackPanel  HorizontalAlignment="Center" 
-              VerticalAlignment="Center" Margin="0 20 0 0">
-                <ListBox Height="100">ListBox</ListBox>
-                <ListBox   Margin="0 10 0 20" Height="100">ListBox</ListBox>
-                <Button Content="Изменить авторов" Style="{StaticResource BaseButton}"/>
-                <Button Content="Изменить разделы" Margin="0 20 0 0" Style="{StaticResource BaseButton}"/>
-
-            </StackPanel>
-
-
         </Grid>
     </Grid>
 </Window>

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Library.Models;
+using Library.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,22 @@ namespace Library.Views
     /// </summary>
     public partial class EditBook : Window
     {
-        public EditBook()
+        EditBookViewModel editBook;
+        //EditBookViewModel editBookViewModel = new EditBookViewModel();
+        public EditBook(ref Book book)
         {
             InitializeComponent();
+
+            editBook = new EditBookViewModel(book);
+            DataContext = editBook;
+            editBook.Closing += (s, e) => Close();
+        }
+
+        private void Button_Back(object sender, RoutedEventArgs e)
+        {
+            CatalogBooksAdmin catalogBooksAdmin = new CatalogBooksAdmin();
+            this.Close();
+            catalogBooksAdmin.Show();
         }
     }
 }
