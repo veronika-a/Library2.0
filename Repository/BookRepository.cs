@@ -11,24 +11,33 @@ namespace Library.Repository
 {
     class BookRepository : IBookRepository
     {
+        DbContext _context;
+        DbSet<Book> _dbSet;
+
+        public BookRepository(DbContext context)
+        {
+            _context = context;
+            _dbSet = context.Set<Book>();
+        }
         public void Delete(Book entity)
         {
-            throw new NotImplementedException();
+            _context.Entry(entity).State = EntityState.Deleted;
+            _context.SaveChanges();
         }
 
         public IEnumerable<Book> GetAll()
         {
-            throw new NotImplementedException();
+            return _dbSet.AsNoTracking().ToList();
         }
 
         public List<Book> GetAll(Expression<Func<Book, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return _dbSet.AsNoTracking().Where(predicate).ToList();
         }
 
         public Book GetById(int id)
         {
-            throw new NotImplementedException();
+            return _dbSet.Find(id);
         }
 
         public int GetCount()
@@ -38,12 +47,14 @@ namespace Library.Repository
 
         public void Insert(Book entity)
         {
-            throw new NotImplementedException();
+            _context.Entry(entity).State = EntityState.Added;
+            _context.SaveChanges();
         }
 
         public void Update(Book entity)
         {
-            throw new NotImplementedException();
+            _context.Entry(entity).State = EntityState.Modified;
+            _context.SaveChanges();
         }
     }
 }
