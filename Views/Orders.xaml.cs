@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,15 @@ namespace Library.Views
     /// </summary>
     public partial class Orders : Window
     {
+        OrdersViewModel ordersViewModel = new OrdersViewModel();
         public Orders()
         {
             InitializeComponent();
+            DataContext = ordersViewModel;
+            ordersViewModel.Closing += (s, e) => this.Close();
+
         }
+      
+
     }
 }
