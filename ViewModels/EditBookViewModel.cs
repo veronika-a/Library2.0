@@ -14,6 +14,9 @@ namespace Library.ViewModels
     public class EditBookViewModel : INotifyPropertyChanged
     {
         private Book book;
+
+        public Book Book { get => book; set => book = value; }
+
         private string title;
         private string ganre;
         private string about;
@@ -86,6 +89,7 @@ namespace Library.ViewModels
                 OnPropertyChanged(nameof(CoverArtist));
             }
         }
+
         private RelayCommand _SaveCommand;
         public RelayCommand SaveCommand
         {
@@ -112,7 +116,7 @@ namespace Library.ViewModels
 
 
                             bookRepository.Update(book);
-                            MessageBox.Show($" {book.Title} !", "New Book", MessageBoxButton.OK, MessageBoxImage.Information);
+                            MessageBox.Show($" {book.Title} !", "Update Book", MessageBoxButton.OK, MessageBoxImage.Information);
 
                         }
 
@@ -124,7 +128,6 @@ namespace Library.ViewModels
 
         public bool Validated = false;
 
-        public Book Book { get => book; set => book = value; }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string prop)
