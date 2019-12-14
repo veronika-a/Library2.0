@@ -60,5 +60,12 @@ namespace Library.Views
             this.Close();
             mainWindow.Show();
         }
+
+        private void Button_Orders(object sender, RoutedEventArgs e)
+        {
+            Orders orders = new Orders();
+            this.Close();
+            orders.Show();
+        }
     }
 }
