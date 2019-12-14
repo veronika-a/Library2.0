@@ -15,10 +15,6 @@ namespace Library.ViewModels
     {
         private Reader reader;
 
-        private string email;
-        private string name;
-        private string phone;
-        private string date;
 
         public CabinetReaderViewModel(Reader reader)
         {
@@ -27,10 +23,6 @@ namespace Library.ViewModels
         }
 
         public Reader Reader { get => reader; set => reader = value; }
-        public string Email { get => email; set => email = value; }
-        public string Name { get => name; set => name = value; }
-        public string Phone { get => phone; set => phone = value; }
-        public string Date { get => date; set => date = value; }
 
         public event EventHandler Closing;
 
@@ -55,6 +47,21 @@ namespace Library.ViewModels
         //    }
         //}
 
+        private RelayCommand _setting;
+
+        public RelayCommand Setting
+        {
+            get
+            {
+                return _setting ??
+                    (_setting = new RelayCommand(obj =>
+                    {
+                        ProfileSettingsReader profileSettingsReader = new ProfileSettingsReader(ref reader);
+                        profileSettingsReader.Show();
+                        Closing?.Invoke(this, EventArgs.Empty);
+                    }));
+            }
+        }
 
 
         public event PropertyChangedEventHandler PropertyChanged;
