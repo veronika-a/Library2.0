@@ -22,7 +22,7 @@
                 <TextBlock FontSize="18" DataContext ="{Binding Reader}" Text="{Binding Email}" />
                 <Button Content="Пользователи"  Margin="0 20 0 0" Style="{StaticResource BaseButton}" Click="Button_CalalogReaders"/>
                 <Button Content="Книги" Margin="0 20 0 0" Style="{StaticResource BaseButton}"  Click="Button_CalalogBookAdmin"/>
-                <Button Content="Выдача" Margin="0 20 0 0" Style="{StaticResource BaseButton}"/>
+                <Button Content="Выдача" Margin="0 20 0 0" Style="{StaticResource BaseButton}" Click="Button_Orders"/>
                 <Button Content="Выход"  Margin="0 40 0 0" Style="{StaticResource BaseButton}" Click="Button_Back"/>
 
             </StackPanel>
