@@ -13,19 +13,44 @@
 
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
-            <TextBlock FontSize="24" Text="Редактировать профиль" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="8*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <TextBlock FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center">Редактировать</TextBlock>
+            </Grid>
+            <Grid Grid.Row="1" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="335*"/>
+                    <ColumnDefinition Width="62*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel
+            HorizontalAlignment="Center" Margin="99,0,36.319,0" 
+             >
+                    <TextBlock FontSize="18" VerticalAlignment="Center"> FirstName</TextBlock>
+                    <TextBox Style="{StaticResource BaseTextBox}" Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBlock FontSize="18" VerticalAlignment="Center"  Width="200"> SecondName</TextBlock>
+                    <TextBox Style="{StaticResource BaseTextBox}" Text="{Binding SecondName, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock FontSize="18" VerticalAlignment="Center"> Phone</TextBlock>
+                    <TextBox Style="{StaticResource BaseTextBox}" Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock FontSize="18" VerticalAlignment="Center">date</TextBlock>
+                    <TextBox Style="{StaticResource BaseTextBox}" Text="{Binding Date, UpdateSourceTrigger=PropertyChanged}" />
+                   
+                </StackPanel>
+            </Grid>
+
         </Grid>
         <Grid Grid.Column="1" >
             <StackPanel
             HorizontalAlignment="Center" 
               VerticalAlignment="Center">
 
-                <TextBox Style="{StaticResource BaseTextBox}" Margin="0 10 0 0">E-mail</TextBox>
-                <TextBox Style="{StaticResource BaseTextBox}" Margin="0 10 0 0">ФИО</TextBox>
-                <TextBox Style="{StaticResource BaseTextBox}" Margin="0 10 0 0">Моб</TextBox>
-                <TextBox Style="{StaticResource BaseTextBox}" Margin="0 10 0 0">Год рождения</TextBox>
                 <Button Content="Изменить пароль" Margin="0 10 0 0" Style="{StaticResource BaseButton}"/>
-                <Button Content="Сохранить" Margin="0 10 0 0" Style="{StaticResource BaseButton}"/>
+                <Button Content="Сохранить" Margin="0 10 0 0" Style="{StaticResource BaseButton}" Command="{Binding SaveCommand}"/>
                 <Button Content="Назад" Margin="0 10 0 0" Style="{StaticResource BaseButton}"/>
             </StackPanel>
         </Grid>
