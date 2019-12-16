@@ -76,7 +76,9 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ContextInitializer.cs" />
+    <Compile Include="Repository\IReaderCardRepository.cs" />
     <Compile Include="Repository\IReaderRepository.cs" />
+    <Compile Include="Repository\ReaderCardRepository.cs" />
     <Compile Include="Repository\ReaderRepository.cs" />
     <Compile Include="ViewModels\BooksReaderViewModel.cs" />
     <Compile Include="ViewModels\CabinetAdminViewModel.cs" />
@@ -86,6 +88,8 @@
     <Compile Include="ViewModels\EditBookViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\NewBookViewModel.cs" />
+    <Compile Include="ViewModels\OrdersViewModel.cs" />
+    <Compile Include="ViewModels\ProfileSettingsReaderViewModel.cs" />
     <Compile Include="ViewModels\RegistrationViewModel.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
     <Compile Include="ViewModels\SingInViewModel.cs" />
