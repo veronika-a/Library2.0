@@ -110,6 +110,25 @@ namespace Library.ViewModels
 
             }
         }
+        private string _take;
+        public string Take
+        {
+            get { return _take; }
+            set
+            {
+                _take = value;
+                OnPropertyChanged(nameof(Take));
+
+
+                using (MyAppContext appContext = new MyAppContext())
+                {
+                    ReaderCardRepository readerCardRepository = new ReaderCardRepository(appContext);
+                    selectedReaderCards.DateTook = DateTime.Now;
+                    readerCardRepository.Update(selectedReaderCards);
+                }
+
+            }
+        }
         private RelayCommand _newOrder;
 
         public RelayCommand NewOrder
@@ -119,9 +138,9 @@ namespace Library.ViewModels
                 return _newOrder ??
                     (_newOrder = new RelayCommand(obj =>
                     {
-                        //CabinetReader cabinetReader = new CabinetReader(ref thisreader);
-                        //cabinetReader.Show();
-                        //Closing?.Invoke(this, EventArgs.Empty);
+                        CatalogBooksReader catalog = new CatalogBooksReader(ref thisreader);
+                        catalog.Show();
+                        Closing?.Invoke(this, EventArgs.Empty);
                     }));
             }
         }
@@ -140,45 +159,7 @@ namespace Library.ViewModels
                     }));
             }
         }
-        //public RelayCommand Edit
-        //{
-        //    get
-        //    {
 
-        //        return _Edit ??
-        //            (_Edit = new RelayCommand(obj =>
-        //            {
-        //                using (MyAppContext appContext = new MyAppContext())
-        //                {
-        //                    BookRepository bookRepository = new BookRepository(appContext);
-        //                    var book = selectedBook;
-        //                    EditBook editBook = new EditBook(ref book);
-        //                    editBook.Show();
-        //                    Closing?.Invoke(this, EventArgs.Empty);
-        //                }
-        //            }));
-        //    }
-        //}
-        //public RelayCommand Delete
-        //{
-        //    get
-        //    {
-
-        //        return _Delete ??
-        //            (_Delete = new RelayCommand(obj =>
-        //            {
-        //                using (MyAppContext appContext = new MyAppContext())
-        //                {
-        //                    BookRepository bookRepository = new BookRepository(appContext);
-        //                    var book = selectedBook;
-        //                    bookRepository.Delete(book);
-        //                    CatalogBooksAdmin catalog = new CatalogBooksAdmin();
-        //                    catalog.Show();
-        //                    Closing?.Invoke(this, EventArgs.Empty);
-        //                }
-        //            }));
-        //    }
-        //}
 
     }
 }
