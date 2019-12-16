@@ -59,3 +59,4 @@
 \\Mac\Home\Documents\trpz\Library\obj\Debug\Views\Registration.g.cs
 \\Mac\Home\Documents\trpz\Library\obj\Debug\Views\Registration.baml
 \\Mac\Home\Documents\trpz\Library\obj\Debug\Library.Migrations._new.resources
+\\Mac\Home\Documents\trpz\Library\obj\Debug\Library.Migrations.status.resources

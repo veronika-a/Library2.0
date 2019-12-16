@@ -74,6 +74,10 @@
     <Compile Include="Migrations\201912091115506_new.designer.cs">
       <DependentUpon>201912091115506_new.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912160940090_status.cs" />
+    <Compile Include="Migrations\201912160940090_status.designer.cs">
+      <DependentUpon>201912160940090_status.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ContextInitializer.cs" />
     <Compile Include="Repository\IReaderCardRepository.cs" />
@@ -83,6 +87,7 @@
     <Compile Include="ViewModels\BooksReaderViewModel.cs" />
     <Compile Include="ViewModels\CabinetAdminViewModel.cs" />
     <Compile Include="ViewModels\CabinetReaderViewModel.cs" />
+    <Compile Include="ViewModels\CatalogBookReaderViewModel.cs" />
     <Compile Include="ViewModels\CatalogBooksAdminViewModel.cs" />
     <Compile Include="ViewModels\CatalogReadersViewModel.cs" />
     <Compile Include="ViewModels\EditBookViewModel.cs" />
@@ -272,6 +277,9 @@
     </Compile>
     <EmbeddedResource Include="Migrations\201912091115506_new.resx">
       <DependentUpon>201912091115506_new.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912160940090_status.resx">
+      <DependentUpon>201912160940090_status.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

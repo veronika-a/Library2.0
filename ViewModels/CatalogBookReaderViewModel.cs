@@ -12,12 +12,14 @@ using System.Windows;
 
 namespace Library.ViewModels
 {
-    public class OrdersViewModel : INotifyPropertyChanged
+
+    public class CatalogBookReaderViewModel : INotifyPropertyChanged
     {
+        Reader thisreader;
         //ObservableCollection<UserModel> selectedUsers;
         public event EventHandler Closing;
-        private RelayCommand _Give;
-        private RelayCommand _Get;
+
+        private RelayCommand _Delete;
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string prop)
@@ -25,10 +27,8 @@ namespace Library.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
         Book _book;
-        Reader _reader;
 
         ObservableCollection<Book> _books;
-        ObservableCollection<Reader> _readers;
         public ObservableCollection<Book> Books
         {
             get { return _books; }
@@ -38,19 +38,9 @@ namespace Library.ViewModels
                 OnPropertyChanged(nameof(Books));
             }
         }
-        public ObservableCollection<Reader> Readers
+        public CatalogBookReaderViewModel(Reader reader)
         {
-            get { return _readers; }
-            set
-            {
-                _readers = value;
-                OnPropertyChanged(nameof(Readers));
-            }
-        }
-
-        public OrdersViewModel()
-        {
-            Readers = new ObservableCollection<Reader>(GetReaders());
+            thisreader = reader;
             Books = new ObservableCollection<Book>(GetBooks());
         }
         Book selectedBook;
@@ -63,16 +53,7 @@ namespace Library.ViewModels
                 OnPropertyChanged(nameof(SelectedBook));
             }
         }
-        Reader selectedReader;
-        public Reader SelectedReader
-        {
-            get { return selectedReader; }
-            set
-            {
-                selectedReader = value;
-                OnPropertyChanged(nameof(SelectedReader));
-            }
-        }
+
         List<Book> GetBooks()
         {
             using (MyAppContext appContext = new MyAppContext())
@@ -81,22 +62,28 @@ namespace Library.ViewModels
                 return (List<Book>)bookRepository.GetAll();
             }
         }
-        List<Reader> GetReaders()
+
+        private string _search;
+        public string Search
         {
-            using (MyAppContext appContext = new MyAppContext())
+            get { return _search; }
+            set
             {
-                ReaderRepository readerRepository = new ReaderRepository(appContext);
-                return (List<Reader>)readerRepository.GetAll();
+                _search = value;
+                OnPropertyChanged(nameof(Search));
+                Books = new ObservableCollection<Book>(GetBooks().Where(i => i.Title.Contains(Search)));
+
+
             }
         }
-
-        public RelayCommand Give
+        private RelayCommand _Order;
+        public RelayCommand Order
         {
             get
             {
 
-                return _Give ??
-                    (_Give = new RelayCommand(obj =>
+                return _Order ??
+                    (_Order = new RelayCommand(obj =>
                     {
                         using (MyAppContext appContext = new MyAppContext())
                         {
@@ -105,9 +92,9 @@ namespace Library.ViewModels
                             var readerCard = new ReaderCard()
                             {
                                 BookId = SelectedBook.Id,
-                                ReaderId = SelectedReader.Id,
-                                DateTook = DateTime.Now,
-                                Status = true
+                                ReaderId = thisreader.Id,
+                                DateOrdered= DateTime.Now,
+                                Status = false
 
                             };
 
@@ -122,6 +109,20 @@ namespace Library.ViewModels
                     }));
             }
         }
+        private RelayCommand _back;
 
+        public RelayCommand Back
+        {
+            get
+            {
+                return _back ??
+                    (_back = new RelayCommand(obj =>
+                    {
+                        BooksReader booksReader = new BooksReader(ref thisreader);
+                        booksReader.Show();
+                        Closing?.Invoke(this, EventArgs.Empty);
+                    }));
+            }
+        }
     }
 }

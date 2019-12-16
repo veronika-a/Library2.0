@@ -13,32 +13,48 @@
 
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="10*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="8*"></RowDefinition>
             </Grid.RowDefinitions>
+
             <Grid Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="8*"></ColumnDefinition>
-                    <ColumnDefinition Width="4*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0">
-                    <TextBox x:Name="textbox_search" Style="{StaticResource BaseTextBox}" FontSize="14">Поиск</TextBox>
-                </Grid>
-                <Grid Grid.Column="1">
-                    <Button x:Name="Button_search">Поиск</Button>
-                </Grid>
-
-
+                <TextBlock FontSize="24" HorizontalAlignment="Center">Книги</TextBlock>
             </Grid>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="5*"/>
-                    <ColumnDefinition Width="88*"/>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <TextBox x:Name="tbSearch" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 0" Style="{StaticResource BaseTextBox}" FontSize="14"/>
+                </Grid>
+                <!-- <Grid Grid.Column="1">
+                    <Button Command="{Binding Search}" >Поиск</Button>
+                </Grid>-->
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="93*"/>
                     <ColumnDefinition Width="27*"/>
                     <ColumnDefinition Width="79*"/>
                 </Grid.ColumnDefinitions>
-                <ListBox x:Name="listBooks" Margin="0.074,10,9.5,10" Grid.ColumnSpan="3" Grid.Column="1">ListBox</ListBox>
+                <ListBox Margin="10,10,9.5,10" Grid.ColumnSpan="3" SelectedItem="{Binding Path=SelectedReaderCard, Mode=TwoWay}" ItemsSource="{Binding BookCards, UpdateSourceTrigger=PropertyChanged}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Label Grid.Row="0" Content="{Binding Title}" />
+                                <Label Grid.Row="1" Content="{Binding Id}"/>
+                            </Grid>
+                        </DataTemplate>
+                        
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </Grid>
 
         </Grid>
@@ -47,9 +63,9 @@
             HorizontalAlignment="Center" 
               VerticalAlignment="Center">
                 <TextBlock FontSize="24" Text="Моя библиотека" />
-                <Button Content="Заказать" Margin="0 20 0 0" Style="{StaticResource BaseButton}"/>
-                <Button Content="Продлить" Margin="0 20 0 0" Style="{StaticResource BaseButton}"/>
-                <Button Content="Назад" Margin="0 40 0 0" Style="{StaticResource BaseButton}"/>
+                <Button Content="Заказать" Margin="0 20 0 0"  Command="{Binding Order}" Style="{StaticResource BaseButton}"/>
+                <Button Content="Продлить" Margin="0 20 0 0" Command="{Binding Take}" Style="{StaticResource BaseButton}"/>
+                <Button Content="Назад" Margin="0 40 0 0" Command="{Binding Back}" Style="{StaticResource BaseButton}"/>
             </StackPanel>
         </Grid>
     </Grid>

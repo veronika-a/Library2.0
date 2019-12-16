@@ -38,12 +38,13 @@ namespace Library.Views
             cabinet.Closing += (s, e) => Close();
         }
 
-        private void Button_MyBooks(object sender, RoutedEventArgs e)
-        {
-            BooksReader booksReader = new BooksReader();
-            this.Close();
-            booksReader.Show();
-        }
+        //private void Button_MyBooks(object sender, RoutedEventArgs e)
+        //{
+
+        //    BooksReader booksReader = new BooksReader(reader);
+        //    this.Close();
+        //    booksReader.Show();
+        //}
 
         private void Button_Back(object sender, RoutedEventArgs e)
         {

@@ -63,6 +63,21 @@ namespace Library.ViewModels
             }
         }
 
+        private RelayCommand _myBooks;
+
+        public RelayCommand MyBooks
+        {
+            get
+            {
+                return _myBooks ??
+                    (_myBooks = new RelayCommand(obj =>
+                    {
+                        BooksReader booksReader = new BooksReader(ref reader);
+                        booksReader.Show();
+                        Closing?.Invoke(this, EventArgs.Empty);
+                    }));
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string prop)

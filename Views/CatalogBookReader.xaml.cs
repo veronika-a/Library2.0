@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Library.Models;
+using Library.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,15 @@ namespace Library.Views
     /// </summary>
     public partial class СatalogBookReader : Window
     {
-        public СatalogBookReader()
+
+        CatalogBookReaderViewModel catalog;
+        public СatalogBookReader(ref Reader reader)
         {
             InitializeComponent();
+
+            catalog = new CatalogBookReaderViewModel(reader);
+            DataContext = catalog;
+            catalog.Closing += (s, e) => Close();
         }
     }
 }

@@ -36,7 +36,7 @@
                 VerticalAlignment="Center"
                 Margin="0">
 
-                <Button Content="Мои книги"  Margin="0 40 0 0" Style="{StaticResource BaseButton}" Click="Button_MyBooks"/>
+                <Button Content="Мои книги"  Margin="0 40 0 0" Command="{Binding MyBooks}" Style="{StaticResource BaseButton}"/>
                 <Button Content="Настройки" Margin="0 20 0 0"  Command="{Binding Setting}" Style="{StaticResource BaseButton}"/>
                 <Button Content="Выход" Margin="0 40 0 0" Style="{StaticResource BaseButton}" Click="Button_Back"/>
             </StackPanel>

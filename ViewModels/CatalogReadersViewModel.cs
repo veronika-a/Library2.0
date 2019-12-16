@@ -58,11 +58,8 @@ namespace Library.ViewModels
                 _search = value;
                 OnPropertyChanged(nameof(Search));
 
-                // does not work
                 Readers = new ObservableCollection<Reader>(GetReaders().Where(i => i.Email.Contains(Search)));
-                                                                                // || i.FirstName.Contains(Search)
-                                                                               // || i.SecondName.Contains(Search))); ;
-
+                                                                            
             }
         }
     }

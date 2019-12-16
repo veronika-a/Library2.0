@@ -69,8 +69,7 @@ namespace Library.ViewModels
                 _search = value;
                 OnPropertyChanged(nameof(Search));
                 Books = new ObservableCollection<Book>(GetBooks().Where(i => i.Title.Contains(Search)));
-                // || i.FirstName.Contains(Search)
-                // || i.SecondName.Contains(Search))); ;
+              
 
             }
         }

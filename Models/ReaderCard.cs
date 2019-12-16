@@ -19,6 +19,7 @@ namespace Library.Models
         private Reader reader;
         [ForeignKey("bookid")]
         private Book book;
+        private bool status;
 
        
 
@@ -30,5 +31,6 @@ namespace Library.Models
         public int BookId { get => bookid; set => bookid = value; }
         public Reader Reader { get => reader; set => reader = value; }
         public Book Book { get => book; set => book = value; }
+        public bool Status { get => status; set => status = value; }
     }
 }
