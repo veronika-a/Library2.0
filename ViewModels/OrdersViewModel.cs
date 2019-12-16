@@ -64,7 +64,7 @@ namespace Library.ViewModels
             using (MyAppContext appContext = new MyAppContext())
             {
                 ReaderCardRepository readerCardRepository = new ReaderCardRepository(appContext);
-                ReaderCards = new ObservableCollection<ReaderCard>(readerCardRepository.GetAll(u => u.Status == false));
+                ReaderCards = new ObservableCollection<ReaderCard>(readerCardRepository.GetAll());
 
             }
         }
@@ -174,6 +174,35 @@ namespace Library.ViewModels
                     }));
             }
         }
+        public RelayCommand Get
+        {
+            get
+            {
 
+                return _Get ??
+                    (_Get = new RelayCommand(obj =>
+                    {
+                        using (MyAppContext appContext = new MyAppContext())
+                        {
+                            if (SelectedReaderCard != null)
+                            {
+                                ReaderCardRepository readerCardRepository = new ReaderCardRepository(appContext);
+                                ReaderCard rc = readerCardRepository.GetById(SelectedReaderCard.Id);
+
+                                //rc.DateReturn = DateTime.Now;
+                                //rc.Status = false;
+
+                                readerCardRepository.Delete(rc);
+                                MessageBox.Show($" {rc} !", "New ", MessageBoxButton.OK, MessageBoxImage.Information);
+
+
+                                Orders orders = new Orders();
+                                orders.Show();
+                                Closing?.Invoke(this, EventArgs.Empty);
+                            }
+                        }
+                    }));
+            }
+        }
     }
 }
