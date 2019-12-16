@@ -73,6 +73,16 @@ namespace Library.ViewModels
                 OnPropertyChanged(nameof(SelectedReader));
             }
         }
+        ReaderCard selectedReaderCard;
+        public ReaderCard SelectedReaderCard
+        {
+            get { return selectedReaderCard; }
+            set
+            {
+                selectedReaderCard = value;
+                OnPropertyChanged(nameof(SelectedReaderCard));
+            }
+        }
         List<Book> GetBooks()
         {
             using (MyAppContext appContext = new MyAppContext())
@@ -90,6 +100,26 @@ namespace Library.ViewModels
             }
         }
 
+        private string _doOrder;
+        public string DoOrder
+        {
+            get { return _doOrder; }
+            set
+            {
+                _doOrder = value;
+                OnPropertyChanged(nameof(DoOrder));
+
+
+                using (MyAppContext appContext = new MyAppContext())
+                {
+                    ReaderCardRepository readerCardRepository = new ReaderCardRepository(appContext);
+                    selectedReaderCard.Status = true;
+                    selectedReaderCard.DateTook = DateTime.Now;
+                    readerCardRepository.Update(selectedReaderCard);
+                }
+
+            }
+        }
         public RelayCommand Give
         {
             get
