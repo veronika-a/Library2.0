@@ -1,5 +1,4 @@
 \\Mac\Home\Documents\trpz\Library\obj\Debug\Library.csprojAssemblyReference.cache
-\\Mac\Home\Documents\trpz\Library\obj\Debug\Views\CatalogBookReader.g.cs
 \\Mac\Home\Documents\trpz\Library\obj\Debug\Views\BookAbout.g.cs
 \\Mac\Home\Documents\trpz\Library\obj\Debug\Views\BookAuthor.g.cs
 \\Mac\Home\Documents\trpz\Library\obj\Debug\Views\BooksReader.g.cs
@@ -30,7 +29,6 @@
 \\Mac\Home\Documents\trpz\Library\bin\Debug\EntityFramework.xml
 \\Mac\Home\Documents\trpz\Library\bin\Debug\EntityFramework.SqlServer.xml
 \\Mac\Home\Documents\trpz\Library\obj\Debug\App.baml
-\\Mac\Home\Documents\trpz\Library\obj\Debug\Views\CatalogBookReader.baml
 \\Mac\Home\Documents\trpz\Library\obj\Debug\Views\BookAbout.baml
 \\Mac\Home\Documents\trpz\Library\obj\Debug\Views\BookAuthor.baml
 \\Mac\Home\Documents\trpz\Library\obj\Debug\Views\BooksReader.baml
@@ -60,3 +58,5 @@
 \\Mac\Home\Documents\trpz\Library\obj\Debug\Views\Registration.baml
 \\Mac\Home\Documents\trpz\Library\obj\Debug\Library.Migrations._new.resources
 \\Mac\Home\Documents\trpz\Library\obj\Debug\Library.Migrations.status.resources
+\\Mac\Home\Documents\trpz\Library\obj\Debug\Views\CatalogBooksReader.g.cs
+\\Mac\Home\Documents\trpz\Library\obj\Debug\Views\CatalogBooksReader.baml

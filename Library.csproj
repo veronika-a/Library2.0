@@ -87,7 +87,7 @@
     <Compile Include="ViewModels\BooksReaderViewModel.cs" />
     <Compile Include="ViewModels\CabinetAdminViewModel.cs" />
     <Compile Include="ViewModels\CabinetReaderViewModel.cs" />
-    <Compile Include="ViewModels\CatalogBookReaderViewModel.cs" />
+    <Compile Include="ViewModels\CatalogBooksReaderViewModel.cs" />
     <Compile Include="ViewModels\CatalogBooksAdminViewModel.cs" />
     <Compile Include="ViewModels\CatalogReadersViewModel.cs" />
     <Compile Include="ViewModels\EditBookViewModel.cs" />
@@ -98,8 +98,8 @@
     <Compile Include="ViewModels\RegistrationViewModel.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
     <Compile Include="ViewModels\SingInViewModel.cs" />
-    <Compile Include="Views\CatalogBookReader.xaml.cs">
-      <DependentUpon>CatalogBookReader.xaml</DependentUpon>
+    <Compile Include="Views\CatalogBooksReader.xaml.cs">
+      <DependentUpon>CatalogBooksReader.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NewBook.xaml.cs">
       <DependentUpon>NewBook.xaml</DependentUpon>
@@ -125,10 +125,6 @@
     <Compile Include="Views\Сhapters.xaml.cs">
       <DependentUpon>Сhapters.xaml</DependentUpon>
     </Compile>
-    <Page Include="Views\CatalogBookReader.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\BookAbout.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -150,6 +146,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CatalogBooksAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CatalogBooksReader.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

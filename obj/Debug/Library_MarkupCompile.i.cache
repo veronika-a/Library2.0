@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 \\Mac\Home\Documents\trpz\Library\App.xaml
-211031004330
+21349964833
 
-60395647539
+601123169555
 171611762785
-Views\CatalogBookReader.xaml;Views\BookAbout.xaml;Views\BookAuthor.xaml;Views\BooksReader.xaml;Views\CabinetAdmin.xaml;Views\CabinetReader.xaml;Views\CatalogBooksAdmin.xaml;Views\CatalogReaders.xaml;Views\ChangePassword.xaml;Views\EditAuthor.xaml;Views\EditBook.xaml;Views\EditСhapter.xaml;Views\MainWindow.xaml;Views\NewBook.xaml;Views\NewUser.xaml;Views\Orders.xaml;Views\ProfileSettingsReader.xaml;Views\ReaderAbout.xaml;Views\Registration.xaml;Views\SingIn.xaml;Views\Сhapters.xaml;
+Views\BookAbout.xaml;Views\BookAuthor.xaml;Views\BooksReader.xaml;Views\CabinetAdmin.xaml;Views\CabinetReader.xaml;Views\CatalogBooksAdmin.xaml;Views\CatalogBooksReader.xaml;Views\CatalogReaders.xaml;Views\ChangePassword.xaml;Views\EditAuthor.xaml;Views\EditBook.xaml;Views\EditСhapter.xaml;Views\MainWindow.xaml;Views\NewBook.xaml;Views\NewUser.xaml;Views\Orders.xaml;Views\ProfileSettingsReader.xaml;Views\ReaderAbout.xaml;Views\Registration.xaml;Views\SingIn.xaml;Views\Сhapters.xaml;
 
 False
 
