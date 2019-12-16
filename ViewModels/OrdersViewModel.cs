@@ -26,7 +26,7 @@ namespace Library.ViewModels
         }
         Book _book;
         Reader _reader;
-
+        ObservableCollection<ReaderCard> _readerCards;
         ObservableCollection<Book> _books;
         ObservableCollection<Reader> _readers;
         public ObservableCollection<Book> Books
@@ -47,11 +47,26 @@ namespace Library.ViewModels
                 OnPropertyChanged(nameof(Readers));
             }
         }
-
+        public ObservableCollection<ReaderCard> ReaderCards
+        {
+            get { return _readerCards; }
+            set
+            {
+                _readerCards = value;
+                OnPropertyChanged(nameof(ReaderCards));
+            }
+        }
         public OrdersViewModel()
         {
             Readers = new ObservableCollection<Reader>(GetReaders());
             Books = new ObservableCollection<Book>(GetBooks());
+
+            using (MyAppContext appContext = new MyAppContext())
+            {
+                ReaderCardRepository readerCardRepository = new ReaderCardRepository(appContext);
+                ReaderCards = new ObservableCollection<ReaderCard>(readerCardRepository.GetAll(u => u.Status == false));
+
+            }
         }
         Book selectedBook;
         public Book SelectedBook
@@ -97,27 +112,34 @@ namespace Library.ViewModels
             {
                 ReaderRepository readerRepository = new ReaderRepository(appContext);
                 return (List<Reader>)readerRepository.GetAll();
+
             }
         }
 
-        private string _doOrder;
-        public string DoOrder
+        private RelayCommand _DoOrder;
+        public RelayCommand DoOrder
         {
-            get { return _doOrder; }
-            set
+            get
             {
-                _doOrder = value;
-                OnPropertyChanged(nameof(DoOrder));
+                return _DoOrder ??
+                    (_DoOrder = new RelayCommand(obj =>
+                    {
+                        using (MyAppContext appContext = new MyAppContext())
+                        {
 
+                            ReaderCardRepository readerCardRepository = new ReaderCardRepository(appContext);
+                            var rc = readerCardRepository.GetById(SelectedReaderCard.Id);
+                            rc.Status = true;
+                            rc.DateTook = DateTime.Now;
 
-                using (MyAppContext appContext = new MyAppContext())
-                {
-                    ReaderCardRepository readerCardRepository = new ReaderCardRepository(appContext);
-                    selectedReaderCard.Status = true;
-                    selectedReaderCard.DateTook = DateTime.Now;
-                    readerCardRepository.Update(selectedReaderCard);
-                }
+                            readerCardRepository.Update(rc);
+                            MessageBox.Show($" {rc.Status} !", "Update ", MessageBoxButton.OK, MessageBoxImage.Information);
 
+                            Orders orders = new Orders();
+                            orders.Show();
+                            Closing?.Invoke(this, EventArgs.Empty);
+                        }
+                    }));
             }
         }
         public RelayCommand Give
