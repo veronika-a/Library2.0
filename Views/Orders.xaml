@@ -35,8 +35,9 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
                 <Button Content="Видать" Margin="0 20 0 0" Style="{StaticResource BaseButton}" Command="{Binding Give}"/>
+                <Button Content="Подтвердить заказ" Margin="0 20 0 0" Style="{StaticResource BaseButton}" Command="{Binding doOrder}"/>
                 <Button Content="Возврат" Margin="0 20 0 0" Style="{StaticResource BaseButton}" Command="{Binding Get}"/>
-                <Button Content="Назад"  Margin="0 40 0 0" Style="{StaticResource BaseButton}"/>
+                <Button Content="Назад"  Margin="0 20 0 0" Style="{StaticResource BaseButton}"/>
 
             </StackPanel>
         </Grid>
