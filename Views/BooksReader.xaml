@@ -63,7 +63,7 @@
             HorizontalAlignment="Center" 
               VerticalAlignment="Center">
                 <TextBlock FontSize="24" Text="Моя библиотека" />
-                <Button Content="Заказать" Margin="0 20 0 0"  Command="{Binding Order}" Style="{StaticResource BaseButton}"/>
+                <Button Content="Заказать" Margin="0 20 0 0"  Command="{Binding NewOrder}" Style="{StaticResource BaseButton}"/>
                 <Button Content="Продлить" Margin="0 20 0 0" Command="{Binding Take}" Style="{StaticResource BaseButton}"/>
                 <Button Content="Назад" Margin="0 40 0 0" Command="{Binding Back}" Style="{StaticResource BaseButton}"/>
             </StackPanel>
