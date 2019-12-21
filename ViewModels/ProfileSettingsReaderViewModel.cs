@@ -79,23 +79,26 @@ namespace Library.ViewModels
         {
             get
             {
-
                 return _SaveCommand ??
                     (_SaveCommand = new RelayCommand(obj =>
                     {
-                        using (MyAppContext appContext = new MyAppContext())
-                        {
-                            ReaderRepository readerRepository = new ReaderRepository(appContext);
-                           
-                            reader.FirstName = FirstName;
-                            reader.SecondName = SecondName;
-                            reader.Phone = Phone;
-                            reader.Date = Date;
-                           
-                            readerRepository.Update(reader);
-                            MessageBox.Show($" {reader.FirstName} !", "Update reader", MessageBoxButton.OK, MessageBoxImage.Information);
-                        }
+                        save();
                     }));
+            }
+        }
+        public void save()
+        {
+            using (MyAppContext appContext = new MyAppContext())
+            {
+                ReaderRepository readerRepository = new ReaderRepository(appContext);
+
+                reader.FirstName = FirstName;
+                reader.SecondName = SecondName;
+                reader.Phone = Phone;
+                reader.Date = Date;
+
+                readerRepository.Update(reader);
+                MessageBox.Show($" {reader.FirstName} !", "Update reader", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 

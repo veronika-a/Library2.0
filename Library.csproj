@@ -79,6 +79,8 @@
       <DependentUpon>201912160940090_status.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\BooksReaderModel.cs" />
+    <Compile Include="Models\CabinetAdminModel.cs" />
     <Compile Include="Models\ContextInitializer.cs" />
     <Compile Include="Repository\IReaderCardRepository.cs" />
     <Compile Include="Repository\IReaderRepository.cs" />

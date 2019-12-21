@@ -36,11 +36,11 @@ namespace Library.Views
             newBook.Show();
         }
 
-        private void Button_Back(object sender, RoutedEventArgs e)
-        {
-            CabinetAdmin cabinet = new CabinetAdmin();
-            this.Close();
-            cabinet.Show();
-        }
+        //private void Button_Back(object sender, RoutedEventArgs e)
+        //{
+        //    CabinetAdmin cabinet = new CabinetAdmin();
+        //    this.Close();
+        //    cabinet.Show();
+        //}
     }
 }

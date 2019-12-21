@@ -40,7 +40,7 @@
                     <ColumnDefinition Width="27*"/>
                     <ColumnDefinition Width="79*"/>
                 </Grid.ColumnDefinitions>
-                <ListBox Margin="10,10,9.5,10" Grid.ColumnSpan="3" SelectedItem="{Binding Path=SelectedReaderCard, Mode=TwoWay}" ItemsSource="{Binding BookCards, UpdateSourceTrigger=PropertyChanged}">
+                <ListBox Margin="10,10,9.5,10" Grid.ColumnSpan="3" SelectedItem="{Binding Path=SelectedBookCard, Mode=TwoWay}" ItemsSource="{Binding BookCards, UpdateSourceTrigger=PropertyChanged}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Grid>

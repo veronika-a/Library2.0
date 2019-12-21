@@ -1,34 +1,43 @@
 ﻿using Library.Models;
-using Library.Repository;
 using Library.Views;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library.ViewModels
 {
-   
+
     public class BooksReaderViewModel : INotifyPropertyChanged
     {
         private Reader thisreader;
+        private string _search;
+        private string _take;
+        ReaderCard _readerCard;
+        Book _bookCard;
+        Book selectedBookCard;
+        BooksReaderModel booksReaderModel;
 
-        //ObservableCollection<UserModel> selectedUsers;
+        public BooksReaderViewModel(Reader reader)
+        {
+            thisreader = reader;
+            booksReaderModel = new BooksReaderModel();
+            BookCards = new ObservableCollection<Book>(booksReaderModel.GetBookCards(thisreader, BookCards));
+           
+        }
+
         public event EventHandler Closing;
-        private RelayCommand _Edit;
-        private RelayCommand _Delete;
+        private RelayCommand _back;
+        private RelayCommand _newOrder;
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string prop)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
-        ReaderCard _readerCard;
-
+       
         ObservableCollection<ReaderCard> _readerCards;
+        ObservableCollection<Book> _bookCards;
+
         public ObservableCollection<ReaderCard> ReaderCards
         {
             get { return _readerCards; }
@@ -38,9 +47,6 @@ namespace Library.ViewModels
                 OnPropertyChanged(nameof(ReaderCards));
             }
         }
-        Book _bookCard;
-
-        ObservableCollection<Book> _bookCards;
         public ObservableCollection<Book> BookCards
         {
             get { return _bookCards; }
@@ -50,43 +56,16 @@ namespace Library.ViewModels
                 OnPropertyChanged(nameof(BookCards));
             }
         }
-
-
-        public BooksReaderViewModel(Reader reader)
+        public Book SelectedBookCard
         {
-            thisreader = reader;
-            ReaderCards = new ObservableCollection<ReaderCard>(GetReaderCards());
-           
-
-        }
-        ReaderCard selectedReaderCards;
-        public ReaderCard SelectedReaderCards
-        {
-            get { return selectedReaderCards; }
+            get { return selectedBookCard; }
             set
             {
-                selectedReaderCards = value;
-                OnPropertyChanged(nameof(SelectedReaderCards));
+                selectedBookCard = value;
+                OnPropertyChanged(nameof(SelectedBookCard));
             }
         }
 
-        List<ReaderCard> GetReaderCards()
-        {
-            using (MyAppContext appContext = new MyAppContext())
-            {
-                ReaderCardRepository readerCardRepository = new ReaderCardRepository(appContext);
-              var  thisreaderCards = readerCardRepository.GetAll(u => u.ReaderId ==thisreader.Id);
-                BookRepository bookRepository = new BookRepository(appContext);
-                 BookCards = new ObservableCollection<Book>();
-                foreach (var thisreaderCard in thisreaderCards)
-                {
-                    BookCards.Add(bookRepository.GetById(thisreaderCard.BookId));
-                }
-                return thisreaderCards;
-            }
-        }
-
-        private string _search;
         public string Search
         {
             get { return _search; }
@@ -94,23 +73,10 @@ namespace Library.ViewModels
             {
                 _search = value;
                 OnPropertyChanged(nameof(Search));
-
-               
-                using (MyAppContext appContext = new MyAppContext())
-                {
-                    BookRepository bookRepository = new BookRepository(appContext);
-                    BookCards = new ObservableCollection<Book>();
-                    foreach (var thisreaderCard in ReaderCards)
-                    {
-                        BookCards.Add(bookRepository.GetAll(u => u.Title.Contains(Search) & u.Id == thisreaderCard.BookId).FirstOrDefault());
-                    }
-                  // BookCards = new ObservableCollection<Book>(bookRepository.GetAll(u => u.Title.Contains(Search)));
-                   
-                }
-
+                BookCards = booksReaderModel.search(thisreader,BookCards,Search);
             }
         }
-        private string _take;
+        
         public string Take
         {
             get { return _take; }
@@ -118,19 +84,10 @@ namespace Library.ViewModels
             {
                 _take = value;
                 OnPropertyChanged(nameof(Take));
-
-
-                using (MyAppContext appContext = new MyAppContext())
-                {
-                    ReaderCardRepository readerCardRepository = new ReaderCardRepository(appContext);
-                    selectedReaderCards.DateTook = DateTime.Now;
-                    readerCardRepository.Update(selectedReaderCards);
-                }
-
+                booksReaderModel.take(selectedBookCard);
             }
         }
-        private RelayCommand _newOrder;
-
+        
         public RelayCommand NewOrder
         {
             get
@@ -144,8 +101,6 @@ namespace Library.ViewModels
                     }));
             }
         }
-        private RelayCommand _back;
-
         public RelayCommand Back
         {
             get

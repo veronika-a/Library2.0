@@ -31,14 +31,7 @@ namespace Library.Views
             DataContext = cabinet;
             cabinet.Closing += (s, e) => Close();
         }
-        public CabinetAdmin()
-        {
-            InitializeComponent();
-
-            cabinet = new CabinetAdminViewModel();
-            DataContext = cabinet;
-            cabinet.Closing += (s, e) => Close();
-        }
+       
 
         private void Button_CalalogReaders(object sender, RoutedEventArgs e)
         {

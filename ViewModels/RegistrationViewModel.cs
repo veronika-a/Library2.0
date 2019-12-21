@@ -42,35 +42,8 @@ namespace Library.ViewModels
             }
         }
 
-        //public RelayCommand PasswordChangedCommand
-        //{
-        //    get
-        //    {
-        //        return _addPaswordChangedCommand ??
-        //            (_addPaswordChangedCommand = new RelayCommand(obj =>
-        //            {
-        //                PasswordBox passwordBox = obj as PasswordBox;
-        //                Password = passwordBox.Password;
-        //            }
-        //            ));
-        //    }
-        //}
+        
 
-
-
-        //public RelayCommand ToLoginPageCommand
-        //{
-        //    get
-        //    {
-        //        return _toLoginPageCommand ??
-        //            (_toLoginPageCommand = new RelayCommand(obj =>
-        //            {
-        //                ClosingRequest?.Invoke(this, EventArgs.Empty);
-        //            }));
-
-
-        //    }
-        //}
         public RelayCommand SignUp
         {
             get
@@ -78,24 +51,13 @@ namespace Library.ViewModels
 
                 return _signUp ??
                     (_signUp = new RelayCommand(obj => {
-                        //if (!Validated)
-                        //{
-                        //    MessageBox.Show("Form Is Invalid or has empty fields", "Warning", MessageBoxButton.OK, MessageBoxImage.Error);
-                        //    return;
-                        //}
+                       
 
                         using (MyAppContext appContext = new MyAppContext())
                         {
                             //logic of create new account
                             ReaderRepository readerRepository = new ReaderRepository(appContext);
-                            //var reader = readerRepository.GetAll(u => u.Email == email || u.Email == email).FirstOrDefault();
-
-                            //if (reader != null)
-                            //{
-                            //    MessageBox.Show("User already exists");
-                            //    return;
-                            //}
-
+                            
                             var reader = new Reader()
                             {
                                 Email = this.email,
@@ -117,35 +79,7 @@ namespace Library.ViewModels
                     }));
             }
         }
-        //public string this[string columnName]
-        //{
-        //    get
-        //    {
-        //        string message = string.Empty;
-
-        //        switch (columnName)
-        //        {
-        //            case "Email":
-        //                if (!DataValidation.ValidateString(Email))
-        //                    message = "NAME should be only letters and 3-15 symbols";
-        //                break;
-
-                  
-        //            case "Password":
-        //                if (!DataValidation.ValidatePassword(Password))
-        //                    message = "Password should be 3-15 symbols, " +
-        //                        "uppercase and lowercase letter and number";
-        //                break;
-
-        //        }
-        //        Validated = DataValidation.ValidateString(Email) && DataValidation.ValidatePassword(Password);
-        //        return message;
-        //    }
-        //}
-        //public string Error
-        //{
-        //    get { return this[string.Empty]; }
-        //}
+        
 
         public RegistrationViewModel() { }
 
