@@ -29,43 +29,6 @@ namespace Library.Models
         public string CoverArtist { get => coverArtist; set => coverArtist = value; }
 
 
-        //Author author;
-        //string code;
-        //List<Chapter>;
-
-
-
-
-
-        // OnPropertyChanged("Id");
-
-
-        //public static List<Book> GetBooks()
-        //{
-        //    var result = new List<BookDTO>
-        //    {
-        //        //new Book(){ Author="Лев Толстой", Title="Война и мир" },
-        //       // new Book(){ Author="Михаил Булгаков", Title="Мастер и Маргарита" },
-        //        //new Book(){ Author="Михаил Булгаков", Title="Оно" }
-        //    };
-        //    BookService bookService = new BookService();
-        //    foreach (var bo in result)
-        //    {
-        //        bookService.Add(bo);
-        //    }
-        //    return result;
-        //}
-
-
-        void OnPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 
 }
