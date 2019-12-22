@@ -18,8 +18,6 @@ namespace Library.Repository
         void Delete(TEntity entity);
         IEnumerable<TEntity> GetAll();
         List<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate);
-
-
     }
 
 }
