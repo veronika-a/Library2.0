@@ -60,3 +60,4 @@
 \\Mac\Home\Documents\trpz\Library\obj\Debug\Library.Migrations.status.resources
 \\Mac\Home\Documents\trpz\Library\obj\Debug\Views\CatalogBooksReader.g.cs
 \\Mac\Home\Documents\trpz\Library\obj\Debug\Views\CatalogBooksReader.baml
+\\Mac\Home\Documents\trpz\Library\obj\Debug\Library.Migrations.chapter.resources

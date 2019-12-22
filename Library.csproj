@@ -37,6 +37,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>ph44353.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.3.0\lib\net45\EntityFramework.dll</HintPath>
@@ -77,6 +80,10 @@
     <Compile Include="Migrations\201912160940090_status.cs" />
     <Compile Include="Migrations\201912160940090_status.designer.cs">
       <DependentUpon>201912160940090_status.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912220102319_chapter.cs" />
+    <Compile Include="Migrations\201912220102319_chapter.designer.cs">
+      <DependentUpon>201912220102319_chapter.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BooksReaderModel.cs" />
@@ -283,6 +290,9 @@
     <EmbeddedResource Include="Migrations\201912160940090_status.resx">
       <DependentUpon>201912160940090_status.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912220102319_chapter.resx">
+      <DependentUpon>201912220102319_chapter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -296,7 +306,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="ph44353.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
