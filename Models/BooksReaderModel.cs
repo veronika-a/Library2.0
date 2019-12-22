@@ -16,8 +16,11 @@ namespace Library.Models
         {
             using (MyAppContext appContext = new MyAppContext())
             {
-                ReaderCardRepository readerCardRepository = new ReaderCardRepository(appContext);
-                ReaderCard selectedReaderCards = readerCardRepository.GetAll(u => u.BookId == selectedBookCard.Id).FirstOrDefault();
+                ReaderCardRepository readerCardRepository 
+                    = new ReaderCardRepository(appContext);
+                ReaderCard selectedReaderCards 
+                    = readerCardRepository.GetAll(u => u.BookId 
+                    == selectedBookCard.Id).FirstOrDefault();
                 selectedReaderCards.DateTook = DateTime.Now;
                 readerCardRepository.Update(selectedReaderCards);
             }
