@@ -19,7 +19,6 @@ namespace Library.Models
         public DbSet<Book> Books { get; set; }
         public DbSet<Reader> Readers { get; set; }
         public DbSet<Author> Authors { get; set; }
-        public DbSet<Chapter> Chapters { get; set; }
         public DbSet<ReaderCard> ReaderCards { get; set; }
         public DbSet<AuthorCard> AuthorCards { get; set; }
 
