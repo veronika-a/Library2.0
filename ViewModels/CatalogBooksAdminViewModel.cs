@@ -14,10 +14,10 @@ namespace Library.ViewModels
     
     public class CatalogBooksAdminViewModel : INotifyPropertyChanged
     {
-        //ObservableCollection<UserModel> selectedUsers;
         public event EventHandler Closing;
         private RelayCommand _Edit;
         private RelayCommand _Delete;
+        CatalogBooksAdminModel catalogBooksAdminModel;
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string prop)
@@ -39,6 +39,7 @@ namespace Library.ViewModels
         public CatalogBooksAdminViewModel()
         {
             Books = new ObservableCollection<Book>(GetBooks());
+             catalogBooksAdminModel = new CatalogBooksAdminModel();
         }
         Book selectedBook;
         public Book SelectedBook
@@ -73,6 +74,7 @@ namespace Library.ViewModels
 
             }
         }
+
         public RelayCommand Edit
         {
             get
@@ -81,17 +83,16 @@ namespace Library.ViewModels
                 return _Edit ??
                     (_Edit = new RelayCommand(obj =>
                     {
-                        using (MyAppContext appContext = new MyAppContext())
-                        {
-                            BookRepository bookRepository = new BookRepository(appContext);
-                            var book = selectedBook;
-                            EditBook editBook = new EditBook(ref book);
-                            editBook.Show();
-                            Closing?.Invoke(this, EventArgs.Empty);
-                        }
+                        catalogBooksAdminModel.edit(selectedBook);
+                        EditBook editBook = new EditBook(ref selectedBook);
+                        editBook.Show();
+                        Closing?.Invoke(this, EventArgs.Empty);
                     }));
             }
         }
+
+       
+        
         public RelayCommand Delete
         {
             get
@@ -100,18 +101,14 @@ namespace Library.ViewModels
                 return _Delete ??
                     (_Delete = new RelayCommand(obj =>
                     {
-                        using (MyAppContext appContext = new MyAppContext())
-                        {
-                            BookRepository bookRepository = new BookRepository(appContext);
-                            var book = selectedBook;
-                            bookRepository.Delete(book);
+                            catalogBooksAdminModel.delete(selectedBook);
                             CatalogBooksAdmin catalog = new CatalogBooksAdmin();
                             catalog.Show();
                             Closing?.Invoke(this, EventArgs.Empty);
-                        }
+                        
                     }));
             }
         }
-
+        
     }
 }

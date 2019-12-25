@@ -28,25 +28,6 @@ namespace Library.ViewModels
 
         public bool Validated = false;
 
-
-        //void Reload()
-        //{
-        //    using (MyAppContext appContext = new MyAppContext())
-        //    {
-        //        cabinetReaderViewModel = new CabinetReaderViewModel(reader);
-        //        readerRepository = new ReaderRepository(appContext);
-
-        //        // foreach (MessageModel model in messagesRepository.GetAll(i => i.ChatID == SelectedChat.Id))
-
-        //        Email = reader.Email;
-        //        Phone = reader.Phone;
-        //        Name = reader.FirstName +" "+ reader.SecondName;
-        //        Date = reader.Date.ToString();
-
-
-        //    }
-        //}
-
         private RelayCommand _setting;
 
         public RelayCommand Setting
