@@ -25,9 +25,6 @@
 \\Mac\Home\Documents\trpz\Library\bin\Debug\Library.exe
 \\Mac\Home\Documents\trpz\Library\bin\Debug\Library.pdb
 \\Mac\Home\Documents\trpz\Library\bin\Debug\EntityFramework.dll
-\\Mac\Home\Documents\trpz\Library\bin\Debug\EntityFramework.SqlServer.dll
-\\Mac\Home\Documents\trpz\Library\bin\Debug\EntityFramework.xml
-\\Mac\Home\Documents\trpz\Library\bin\Debug\EntityFramework.SqlServer.xml
 \\Mac\Home\Documents\trpz\Library\obj\Debug\App.baml
 \\Mac\Home\Documents\trpz\Library\obj\Debug\Views\BookAbout.baml
 \\Mac\Home\Documents\trpz\Library\obj\Debug\Views\BookAuthor.baml
@@ -56,8 +53,11 @@
 \\Mac\Home\Documents\trpz\Library\obj\Debug\Library.pdb
 \\Mac\Home\Documents\trpz\Library\obj\Debug\Views\Registration.g.cs
 \\Mac\Home\Documents\trpz\Library\obj\Debug\Views\Registration.baml
-\\Mac\Home\Documents\trpz\Library\obj\Debug\Library.Migrations._new.resources
-\\Mac\Home\Documents\trpz\Library\obj\Debug\Library.Migrations.status.resources
 \\Mac\Home\Documents\trpz\Library\obj\Debug\Views\CatalogBooksReader.g.cs
 \\Mac\Home\Documents\trpz\Library\obj\Debug\Views\CatalogBooksReader.baml
-\\Mac\Home\Documents\trpz\Library\obj\Debug\Library.Migrations.chapter.resources
+\\Mac\Home\Documents\trpz\Library\bin\Debug\WcfServiceLibrary.dll
+\\Mac\Home\Documents\trpz\Library\bin\Debug\WcfServiceLibrary.pdb
+\\Mac\Home\Documents\trpz\Library\bin\Debug\WcfServiceLibrary.dll.config
+\\Mac\Home\Documents\trpz\Library\bin\Debug\ru\EntityFramework.resources.dll
+\\Mac\Home\Documents\trpz\Library\bin\Debug\EntityFramework.SqlServer.dll
+\\Mac\Home\Documents\trpz\Library\bin\Debug\ru\EntityFramework.SqlServer.resources.dll

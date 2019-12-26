@@ -1,5 +1,6 @@
 ﻿using Library.Models;
 using Library.Repository;
+using Library.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,6 +8,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WcfServiceLibrary;
 
 namespace Library.ViewModels
 {
@@ -14,7 +16,8 @@ namespace Library.ViewModels
     {
         //ObservableCollection<UserModel> selectedUsers;
         public event EventHandler Closing;
-
+        Service1 service1;
+        Reader thisreader;
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string prop)
@@ -33,21 +36,14 @@ namespace Library.ViewModels
                 OnPropertyChanged(nameof(Readers));
             }
         }
-        public CatalogReadersViewModel()
+        public CatalogReadersViewModel(Reader reader)
         {
-            Readers = new ObservableCollection<Reader>(GetReaders());
+            thisreader = reader;
+             service1 = new Service1();
+            Readers = new ObservableCollection<Reader>(service1.catalogReadersViewModel_getReaders());
         }
 
-        List<Reader> GetReaders()
-        {
-            List<Reader> allreaders = new List<Reader>();
-
-            using (MyAppContext appContext = new MyAppContext())
-            {
-                ReaderRepository readerRepository = new ReaderRepository(appContext);
-                return (List<Reader>)readerRepository.GetAll();
-            }
-        }
+      
 
         private string _search;
         public string Search
@@ -57,9 +53,23 @@ namespace Library.ViewModels
             {
                 _search = value;
                 OnPropertyChanged(nameof(Search));
+                Readers = new ObservableCollection<Reader>(service1.catalogReadersViewModel_getReaders().Where(i => i.Email.Contains(Search)));                                               
+            }
+        }
 
-                Readers = new ObservableCollection<Reader>(GetReaders().Where(i => i.Email.Contains(Search)));
-                                                                            
+        private RelayCommand _back;
+
+        public RelayCommand Back
+        {
+            get
+            {
+                return _back ??
+                    (_back = new RelayCommand(obj =>
+                    {
+                        CabinetAdmin cabinet = new CabinetAdmin(ref thisreader);
+                        cabinet.Show();
+                        Closing?.Invoke(this, EventArgs.Empty);
+                    }));
             }
         }
     }

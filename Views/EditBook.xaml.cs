@@ -23,20 +23,14 @@ namespace Library.Views
     {
         EditBookViewModel editBook;
         //EditBookViewModel editBookViewModel = new EditBookViewModel();
-        public EditBook(ref Book book)
+        public EditBook(ref Book book, ref Reader reader)
         {
             InitializeComponent();
 
-            editBook = new EditBookViewModel(book);
+            editBook = new EditBookViewModel(book, reader);
             DataContext = editBook;
             editBook.Closing += (s, e) => Close();
         }
 
-        private void Button_Back(object sender, RoutedEventArgs e)
-        {
-            CatalogBooksAdmin catalogBooksAdmin = new CatalogBooksAdmin();
-            this.Close();
-            catalogBooksAdmin.Show();
-        }
     }
 }

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using WcfServiceLibrary;
 
 namespace Library.ViewModels
 {
@@ -21,10 +22,12 @@ namespace Library.ViewModels
         private string phone;
         private DateTime? date;
 
+        Service1 service1;
+
         public ProfileSettingsReaderViewModel(Reader reader)
         {
             Reader = reader;
-
+            service1 = new Service1();
             firstName = this.reader.FirstName;
             secondName = this.reader.SecondName;
             phone = this.reader.Phone;
@@ -82,25 +85,15 @@ namespace Library.ViewModels
                 return _SaveCommand ??
                     (_SaveCommand = new RelayCommand(obj =>
                     {
-                        save();
+                        reader.FirstName = FirstName;
+                        reader.SecondName = SecondName;
+                        reader.Phone = Phone;
+                        reader.Date = Date;
+                        service1.profileSettingsReaderViewModel_save(reader);
                     }));
             }
         }
-        public void save()
-        {
-            using (MyAppContext appContext = new MyAppContext())
-            {
-                ReaderRepository readerRepository = new ReaderRepository(appContext);
-
-                reader.FirstName = FirstName;
-                reader.SecondName = SecondName;
-                reader.Phone = Phone;
-                reader.Date = Date;
-
-                readerRepository.Update(reader);
-                MessageBox.Show($" {reader.FirstName} !", "Update reader", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-        }
+        
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string prop)

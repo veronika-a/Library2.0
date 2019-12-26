@@ -1,4 +1,5 @@
-﻿using Library.ViewModels;
+﻿using Library.Models;
+using Library.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,20 +21,21 @@ namespace Library.Views
     /// </summary>
     public partial class NewBook : Window
     {
-        NewBookViewModel newBook = new NewBookViewModel();
-        public NewBook()
+        NewBookViewModel newBook;
+        public NewBook(ref Reader reader)
         {
             InitializeComponent();
+            newBook = new NewBookViewModel(reader);
             DataContext = newBook;
             newBook.Closing += (s, e) => this.Close();
         }
        
-        private void Button_Back(object sender, RoutedEventArgs e)
-        {
-            CatalogBooksAdmin catalogBooksAdmin = new CatalogBooksAdmin();
-            this.Close();
-            catalogBooksAdmin.Show();
-        }
+        //private void Button_Back(object sender, RoutedEventArgs e)
+        //{
+        //    CatalogBooksAdmin catalogBooksAdmin = new CatalogBooksAdmin();
+        //    this.Close();
+        //    catalogBooksAdmin.Show();
+        //}
 
     }
 }

@@ -9,26 +9,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using WcfServiceLibrary;
 
 namespace Library.ViewModels
 {
     public class OrdersViewModel : INotifyPropertyChanged
     {
-        //ObservableCollection<UserModel> selectedUsers;
         public event EventHandler Closing;
         private RelayCommand _Give;
         private RelayCommand _Get;
+        private RelayCommand _DoOrder;
+
+        Book selectedBook;
+        Reader selectedReader;
+        ReaderCard selectedReaderCard;
+        Service1 service1;
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string prop)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
-        Book _book;
-        Reader _reader;
+
+        //Book _book;
+        //Reader _reader;
+        Reader thisreader;
         ObservableCollection<ReaderCard> _readerCards;
         ObservableCollection<Book> _books;
         ObservableCollection<Reader> _readers;
+
         public ObservableCollection<Book> Books
         {
             get { return _books; }
@@ -56,19 +65,17 @@ namespace Library.ViewModels
                 OnPropertyChanged(nameof(ReaderCards));
             }
         }
-        public OrdersViewModel()
+
+        public OrdersViewModel( Reader reader)
         {
-            Readers = new ObservableCollection<Reader>(GetReaders());
-            Books = new ObservableCollection<Book>(GetBooks());
-
-            using (MyAppContext appContext = new MyAppContext())
-            {
-                ReaderCardRepository readerCardRepository = new ReaderCardRepository(appContext);
-                ReaderCards = new ObservableCollection<ReaderCard>(readerCardRepository.GetAll());
-
-            }
+            thisreader = reader;
+             service1 = new Service1();
+            Readers = new ObservableCollection<Reader>(service1.ordersViewModel_getReaders());
+            Books = new ObservableCollection<Book>(service1.ordersViewModel_getBooks());
+            ReaderCards = new ObservableCollection<ReaderCard>(service1.ordersViewModel_getReaderCards());
         }
-        Book selectedBook;
+
+        
         public Book SelectedBook
         {
             get { return selectedBook; }
@@ -78,7 +85,6 @@ namespace Library.ViewModels
                 OnPropertyChanged(nameof(SelectedBook));
             }
         }
-        Reader selectedReader;
         public Reader SelectedReader
         {
             get { return selectedReader; }
@@ -88,7 +94,6 @@ namespace Library.ViewModels
                 OnPropertyChanged(nameof(SelectedReader));
             }
         }
-        ReaderCard selectedReaderCard;
         public ReaderCard SelectedReaderCard
         {
             get { return selectedReaderCard; }
@@ -98,25 +103,7 @@ namespace Library.ViewModels
                 OnPropertyChanged(nameof(SelectedReaderCard));
             }
         }
-        List<Book> GetBooks()
-        {
-            using (MyAppContext appContext = new MyAppContext())
-            {
-                BookRepository bookRepository = new BookRepository(appContext);
-                return (List<Book>)bookRepository.GetAll();
-            }
-        }
-        List<Reader> GetReaders()
-        {
-            using (MyAppContext appContext = new MyAppContext())
-            {
-                ReaderRepository readerRepository = new ReaderRepository(appContext);
-                return (List<Reader>)readerRepository.GetAll();
-
-            }
-        }
-
-        private RelayCommand _DoOrder;
+        
         public RelayCommand DoOrder
         {
             get
@@ -124,21 +111,10 @@ namespace Library.ViewModels
                 return _DoOrder ??
                     (_DoOrder = new RelayCommand(obj =>
                     {
-                        using (MyAppContext appContext = new MyAppContext())
-                        {
-
-                            ReaderCardRepository readerCardRepository = new ReaderCardRepository(appContext);
-                            var rc = readerCardRepository.GetById(SelectedReaderCard.Id);
-                            rc.Status = true;
-                            rc.DateTook = DateTime.Now;
-
-                            readerCardRepository.Update(rc);
-                            MessageBox.Show($" {rc.Status} !", "Update ", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                            Orders orders = new Orders();
-                            orders.Show();
-                            Closing?.Invoke(this, EventArgs.Empty);
-                        }
+                        service1.ordersViewModel_doOrder(SelectedReaderCard);
+                        Orders orders = new Orders(ref thisreader);
+                        orders.Show();
+                        Closing?.Invoke(this, EventArgs.Empty);
                     }));
             }
         }
@@ -150,27 +126,18 @@ namespace Library.ViewModels
                 return _Give ??
                     (_Give = new RelayCommand(obj =>
                     {
-                        using (MyAppContext appContext = new MyAppContext())
+                        var readerCard = new ReaderCard()
                         {
-                            ReaderCardRepository readerCardRepository = new ReaderCardRepository(appContext);
+                            BookId = SelectedBook.Id,
+                            ReaderId = SelectedReader.Id,
+                            DateTook = DateTime.Now,
+                            Status = true
 
-                            var readerCard = new ReaderCard()
-                            {
-                                BookId = SelectedBook.Id,
-                                ReaderId = SelectedReader.Id,
-                                DateTook = DateTime.Now,
-                                Status = true
-
-                            };
-
-                            readerCardRepository.Insert(readerCard);
-                            MessageBox.Show($" {readerCard} !", "New ", MessageBoxButton.OK, MessageBoxImage.Information);
-
-
-                            Orders orders = new Orders();
-                            orders.Show();
-                            Closing?.Invoke(this, EventArgs.Empty);
-                        }
+                        };
+                        service1.ordersViewModel_give(readerCard);
+                        Orders orders = new Orders(ref thisreader);
+                        orders.Show();
+                        Closing?.Invoke(this, EventArgs.Empty);
                     }));
             }
         }
@@ -182,27 +149,29 @@ namespace Library.ViewModels
                 return _Get ??
                     (_Get = new RelayCommand(obj =>
                     {
-                        using (MyAppContext appContext = new MyAppContext())
-                        {
-                            if (SelectedReaderCard != null)
-                            {
-                                ReaderCardRepository readerCardRepository = new ReaderCardRepository(appContext);
-                                ReaderCard rc = readerCardRepository.GetById(SelectedReaderCard.Id);
-
-                                //rc.DateReturn = DateTime.Now;
-                                //rc.Status = false;
-
-                                readerCardRepository.Delete(rc);
-                                MessageBox.Show($" {rc} !", "New ", MessageBoxButton.OK, MessageBoxImage.Information);
-
-
-                                Orders orders = new Orders();
-                                orders.Show();
-                                Closing?.Invoke(this, EventArgs.Empty);
-                            }
-                        }
+                        service1.ordersViewModel_get(SelectedReaderCard);
+                        Orders orders = new Orders(ref thisreader);
+                        orders.Show();
+                        Closing?.Invoke(this, EventArgs.Empty);
                     }));
             }
         }
+        private RelayCommand _back;
+
+        public RelayCommand Back
+        {
+            get
+            {
+                return _back ??
+                    (_back = new RelayCommand(obj =>
+                    {
+                        CabinetAdmin cabinet = new CabinetAdmin(ref thisreader);
+                        cabinet.Show();
+                        Closing?.Invoke(this, EventArgs.Empty);
+                    }));
+            }
+        }
+
+
     }
 }

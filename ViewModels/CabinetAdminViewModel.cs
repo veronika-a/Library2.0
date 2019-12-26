@@ -3,6 +3,7 @@ using Library.Views;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using WcfServiceLibrary;
 
 namespace Library.ViewModels
 {
@@ -10,14 +11,14 @@ namespace Library.ViewModels
     public class CabinetAdminViewModel : INotifyPropertyChanged
     {
         private Reader reader;
-        CabinetAdminModel cabinetAdminModel;
+        Service1 service1;
+
         public CabinetAdminViewModel(Reader reader)
         {
+             service1 = new Service1();
             Reader = reader;
-            cabinetAdminModel = new CabinetAdminModel();
-            ReaderCards = new ObservableCollection<ReaderCard>(cabinetAdminModel.GetReaderCards());
+            ReaderCards = new ObservableCollection<ReaderCard>(service1.cabinetAdminModel_GetReaderCards());
         }
-        
 
         public Reader Reader { get => reader; set => reader = value; }
         public event EventHandler Closing;
@@ -60,13 +61,79 @@ namespace Library.ViewModels
                 return _DoOrder ??
                     (_DoOrder = new RelayCommand(obj =>
                     {
-                        cabinetAdminModel.doOrder(SelectedReaderCard);
+                        service1.cabinetAdminModel_doOrder(SelectedReaderCard);
                         CabinetAdmin cabinet = new CabinetAdmin(ref reader);
                         cabinet.Show();
                         Closing?.Invoke(this, EventArgs.Empty);
                     }));
             }
         }
-       
+        private RelayCommand _orders;
+
+        public RelayCommand Orders
+        {
+            get
+            {
+                return _orders ??
+                    (_orders = new RelayCommand(obj =>
+                    {
+                        Orders orders = new Orders(ref reader);
+                        orders.Show();
+                        Closing?.Invoke(this, EventArgs.Empty);
+                    }));
+            }
+        }
+
+        private RelayCommand _back;
+
+        public RelayCommand Back
+        {
+            get
+            {
+                return _back ??
+                    (_back = new RelayCommand(obj =>
+                    {
+                        MainWindow main = new MainWindow();
+                        main.Show();
+                        Closing?.Invoke(this, EventArgs.Empty);
+                    }));
+            }
+        }
+        private RelayCommand _CalalogReaders;
+
+        public RelayCommand CalalogReaders
+        {
+            get
+            {
+                return _CalalogReaders ??
+                    (_CalalogReaders = new RelayCommand(obj =>
+                    {
+                        CatalogReaders catalog = new CatalogReaders(ref reader);
+                        catalog.Show();
+                        Closing?.Invoke(this, EventArgs.Empty);
+                    }));
+            }
+        }
+        private RelayCommand _CalalogBookAdmin;
+
+        public RelayCommand CalalogBookAdmin
+        {
+            get
+            {
+                return _CalalogBookAdmin ??
+                    (_CalalogBookAdmin = new RelayCommand(obj =>
+                    {
+                         CatalogBooksAdmin catalog = new CatalogBooksAdmin(ref reader);
+                        catalog.Show();
+                        Closing?.Invoke(this, EventArgs.Empty);
+                    }));
+            }
+        }
+        //<Button Content = "Пользователи"  Margin="0 20 0 0" Style="{StaticResource BaseButton}" Command="{Binding CalalogReaders}" />
+        //<Button Content = "Книги" Margin="0 20 0 0" Style="{StaticResource BaseButton}" Command="{Binding CalalogBookAdmin}"/>
+        //<Button Content = "Выдача" Margin="0 20 0 0" Style="{StaticResource BaseButton}" Command="{Binding Orders}"/>
+        //<Button Content = "Подтвердить заказ" Margin="0 20 0 0" Style="{StaticResource BaseButton}" Command="{Binding DoOrder}"/>
+        //<Button Content = "Выход"  Margin="0 20 0 0" Style="{StaticResource BaseButton}" Command="{Binding Back}"/>
+
     }
 }

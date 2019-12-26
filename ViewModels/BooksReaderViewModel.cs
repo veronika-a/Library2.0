@@ -3,6 +3,7 @@ using Library.Views;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using WcfServiceLibrary;
 
 namespace Library.ViewModels
 {
@@ -15,13 +16,13 @@ namespace Library.ViewModels
         ReaderCard _readerCard;
         Book _bookCard;
         Book selectedBookCard;
-        BooksReaderModel booksReaderModel;
+        Service1 service1;
 
         public BooksReaderViewModel(Reader reader)
         {
+             service1 = new Service1();
             thisreader = reader;
-            booksReaderModel = new BooksReaderModel();
-            BookCards = new ObservableCollection<Book>(booksReaderModel.GetBookCards(thisreader, BookCards));
+            BookCards = new ObservableCollection<Book>(service1.booksReaderViewModel_getBookCards(thisreader, BookCards));
            
         }
 
@@ -73,7 +74,7 @@ namespace Library.ViewModels
             {
                 _search = value;
                 OnPropertyChanged(nameof(Search));
-                BookCards = booksReaderModel.search(thisreader,BookCards,Search);
+                BookCards = service1.booksReaderViewModel_search(thisreader,BookCards,Search);
             }
         }
         
@@ -84,7 +85,8 @@ namespace Library.ViewModels
             {
                 _take = value;
                 OnPropertyChanged(nameof(Take));
-                booksReaderModel.take(selectedBookCard);
+                service1.booksReaderViewModel_take(selectedBookCard);
+               // booksReaderModel.take(selectedBookCard); 
             }
         }
         

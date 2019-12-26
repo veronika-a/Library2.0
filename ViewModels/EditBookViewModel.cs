@@ -1,21 +1,19 @@
 ﻿using Library.Models;
-using Library.Repository;
+using Library.Views;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+using WcfServiceLibrary;
 
 namespace Library.ViewModels
 {
 
     public class EditBookViewModel : INotifyPropertyChanged
     {
-        private Book book;
+        private Book thisbook;
+        private Reader thisreader;
+        Service1 service1;
 
-        public Book Book { get => book; set => book = value; }
+        public Book Thisbook { get => thisbook; set => thisbook = value; }
 
         private string title;
         private string ganre;
@@ -24,16 +22,20 @@ namespace Library.ViewModels
         private int? publicationDate;
         private string coverArtist;
 
-        public EditBookViewModel(Book book)
+        public EditBookViewModel(Book book, Reader reader)
         {
-            Book = book;
+                Thisbook = book;
+            thisreader = reader;
 
-            title =  this.book.Title;
-            ganre = this.book.Ganre;
-            coverArtist = this.book.CoverArtist;
-            publisher = this.book.Publisher;
-            publicationDate = this.book.PublicationDate;
-            about = this.book.About;
+                title = book.Title;
+                ganre = book.Ganre;
+                coverArtist = book.CoverArtist;
+                publisher = book.Publisher;
+                publicationDate = book.PublicationDate;
+                about = book.About;
+
+                service1 = new Service1();
+            
         }
         public string Title
         {
@@ -99,27 +101,37 @@ namespace Library.ViewModels
                 return _SaveCommand ??
                     (_SaveCommand = new RelayCommand(obj =>
                     {
-
-
-                        using (MyAppContext appContext = new MyAppContext())
+                        if (thisbook.Title != null)
                         {
-                            BookRepository bookRepository = new BookRepository(appContext);
-                            //var book = bookRepository.GetAll(u => u.Title == title || u.Edition == Edition).FirstOrDefault();
+                            thisbook.Title = Title;
+                            thisbook.Ganre = Ganre;
+                            thisbook.CoverArtist = CoverArtist;
+                            thisbook.Publisher = Publisher;
+                            thisbook.PublicationDate = PublicationDate;
+                            thisbook.About = About;
 
+                            service1.editBookViewModel_save(thisbook);
 
-                            book.Title = Title;
-                            book.Ganre = Ganre;
-                            book.CoverArtist = CoverArtist;
-                            book.Publisher = Publisher;
-                            book.PublicationDate = PublicationDate;
-                            book.About = About;
-
-
-                            bookRepository.Update(book);
-                            MessageBox.Show($" {book.Title} !", "Update Book", MessageBoxButton.OK, MessageBoxImage.Information);
-
+                            CatalogBooksAdmin catalogBooksAdmin = new CatalogBooksAdmin(ref thisreader);
+                            catalogBooksAdmin.Show();
+                            Closing?.Invoke(this, EventArgs.Empty);
                         }
+                    }));
+            }
+        }
 
+        private RelayCommand _back;
+
+        public RelayCommand Back
+        {
+            get
+            {
+                return _back ??
+                    (_back = new RelayCommand(obj =>
+                    {
+                        CatalogBooksAdmin catalog = new CatalogBooksAdmin(ref thisreader);
+                        catalog.Show();
+                        Closing?.Invoke(this, EventArgs.Empty);
                     }));
             }
         }

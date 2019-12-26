@@ -6,8 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using WcfServiceLibrary;
 
 namespace Library.ViewModels
 {
@@ -17,7 +16,8 @@ namespace Library.ViewModels
         public event EventHandler Closing;
         private RelayCommand _Edit;
         private RelayCommand _Delete;
-        CatalogBooksAdminModel catalogBooksAdminModel;
+        Service1 service1;
+        Reader thisreader;
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string prop)
@@ -36,10 +36,11 @@ namespace Library.ViewModels
                 OnPropertyChanged(nameof(Books));
             }
         }
-        public CatalogBooksAdminViewModel()
+        public CatalogBooksAdminViewModel(Reader reader)
         {
-            Books = new ObservableCollection<Book>(GetBooks());
-             catalogBooksAdminModel = new CatalogBooksAdminModel();
+            thisreader = reader;
+             service1 = new Service1();
+            Books = new ObservableCollection<Book>(service1.catalogBooksAdminModel_getBooks());
         }
         Book selectedBook;
         public Book SelectedBook
@@ -52,14 +53,7 @@ namespace Library.ViewModels
             }
         }
 
-        List<Book> GetBooks()
-        {
-            using (MyAppContext appContext = new MyAppContext())
-            {
-                BookRepository bookRepository = new BookRepository(appContext);
-                return (List<Book>)bookRepository.GetAll();
-            }
-        }
+        
 
         private string _search;
         public string Search
@@ -69,7 +63,7 @@ namespace Library.ViewModels
             {
                 _search = value;
                 OnPropertyChanged(nameof(Search));
-                Books = new ObservableCollection<Book>(GetBooks().Where(i => i.Title.Contains(Search)));
+                Books = new ObservableCollection<Book>(service1.catalogBooksAdminModel_getBooks().Where(i => i.Title.Contains(Search)));
               
 
             }
@@ -83,10 +77,13 @@ namespace Library.ViewModels
                 return _Edit ??
                     (_Edit = new RelayCommand(obj =>
                     {
-                        catalogBooksAdminModel.edit(selectedBook);
-                        EditBook editBook = new EditBook(ref selectedBook);
-                        editBook.Show();
-                        Closing?.Invoke(this, EventArgs.Empty);
+                        if (selectedBook != null)
+                        {
+                            service1.catalogBooksAdminModel_edit(selectedBook);
+                            EditBook editBook = new EditBook(ref selectedBook, ref thisreader);
+                            editBook.Show();
+                            Closing?.Invoke(this, EventArgs.Empty);
+                        }
                     }));
             }
         }
@@ -101,14 +98,43 @@ namespace Library.ViewModels
                 return _Delete ??
                     (_Delete = new RelayCommand(obj =>
                     {
-                            catalogBooksAdminModel.delete(selectedBook);
-                            CatalogBooksAdmin catalog = new CatalogBooksAdmin();
+                        service1.catalogBooksAdminModel_delete(selectedBook);
+                            CatalogBooksAdmin catalog = new CatalogBooksAdmin(ref thisreader);
                             catalog.Show();
                             Closing?.Invoke(this, EventArgs.Empty);
                         
                     }));
             }
         }
-        
+        private RelayCommand _addBook;
+
+        public RelayCommand AddBook
+        {
+            get
+            {
+                return _addBook ??
+                    (_addBook = new RelayCommand(obj =>
+                    {
+                        NewBook newBook = new NewBook(ref thisreader);
+                        newBook.Show();
+                        Closing?.Invoke(this, EventArgs.Empty);
+                    }));
+            }
+        }
+        private RelayCommand _back;
+
+        public RelayCommand Back
+        {
+            get
+            {
+                return _back ??
+                    (_back = new RelayCommand(obj =>
+                    {
+                        CabinetAdmin cabinet = new CabinetAdmin(ref thisreader);
+                        cabinet.Show();
+                        Closing?.Invoke(this, EventArgs.Empty);
+                    }));
+            }
+        }
     }
 }
