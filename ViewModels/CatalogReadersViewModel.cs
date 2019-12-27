@@ -24,7 +24,7 @@ namespace Library.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
-        Reader _reader;
+        //Reader _reader;
 
         ObservableCollection<Reader> _readers;
         public ObservableCollection<Reader> Readers
@@ -72,5 +72,43 @@ namespace Library.ViewModels
                     }));
             }
         }
+
+        private RelayCommand _AddReader;
+
+        public RelayCommand AddReader
+        {
+            get
+            {
+                return _AddReader ??
+                    (_AddReader = new RelayCommand(obj =>
+                    {
+                        NewUser newUser = new NewUser(ref thisreader);
+                        newUser.Show();
+                        Closing?.Invoke(this, EventArgs.Empty);
+                    }));
+            }
+        }
+
+        private RelayCommand _EditReader;
+
+        public RelayCommand EditReader
+        {
+            get
+            {
+                return _EditReader ??
+                    (_EditReader = new RelayCommand(obj =>
+                    {
+                    //    NewUser newUser = new NewUser(ref thisreader);
+                    //    newUser.Show();
+                    //    Closing?.Invoke(this, EventArgs.Empty);
+                    }));
+            }
+        }
+
+        //            <Button Content = "Добавить" Margin="0 20 0 0" Style="{StaticResource BaseButton}" Command="{Binding AddReader}"/>
+        //            <Button Content = "Изменить" Margin="0 20 0 0" Style="{StaticResource BaseButton}" Command="{Binding EditReader}"/>
+        //            <Button Content = "Удалить" Margin="0 20 0 0" Style="{StaticResource BaseButton}" Command="{Binding DeleteReader}"/>
+        //            <Button Content = "Назад"  Margin="0 40 0 0" Style="{StaticResource BaseButton}" Command="{Binding Back}"/>
+
     }
 }

@@ -13,8 +13,8 @@ namespace Library.ViewModels
         private Reader thisreader;
         private string _search;
         private string _take;
-        ReaderCard _readerCard;
-        Book _bookCard;
+        //ReaderCard _readerCard;
+       // Book _bookCard;
         Book selectedBookCard;
         Service1 service1;
 

@@ -129,11 +129,5 @@ namespace Library.ViewModels
                     }));
             }
         }
-        //<Button Content = "Пользователи"  Margin="0 20 0 0" Style="{StaticResource BaseButton}" Command="{Binding CalalogReaders}" />
-        //<Button Content = "Книги" Margin="0 20 0 0" Style="{StaticResource BaseButton}" Command="{Binding CalalogBookAdmin}"/>
-        //<Button Content = "Выдача" Margin="0 20 0 0" Style="{StaticResource BaseButton}" Command="{Binding Orders}"/>
-        //<Button Content = "Подтвердить заказ" Margin="0 20 0 0" Style="{StaticResource BaseButton}" Command="{Binding DoOrder}"/>
-        //<Button Content = "Выход"  Margin="0 20 0 0" Style="{StaticResource BaseButton}" Command="{Binding Back}"/>
-
     }
 }

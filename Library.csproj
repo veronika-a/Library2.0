@@ -70,6 +70,7 @@
     <Compile Include="ViewModels\EditBookViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\NewBookViewModel.cs" />
+    <Compile Include="ViewModels\NewUserViewModel.cs" />
     <Compile Include="ViewModels\OrdersViewModel.cs" />
     <Compile Include="ViewModels\ProfileSettingsReaderViewModel.cs" />
     <Compile Include="ViewModels\RegistrationViewModel.cs" />

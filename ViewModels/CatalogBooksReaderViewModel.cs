@@ -19,14 +19,14 @@ namespace Library.ViewModels
         Reader thisreader;
         public event EventHandler Closing;
         Service1 service1;
-        private RelayCommand _Delete;
+       // private RelayCommand _Delete;
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string prop)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
-        Book _book;
+       // Book _book;
 
         ObservableCollection<Book> _books;
         public ObservableCollection<Book> Books

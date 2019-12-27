@@ -24,7 +24,7 @@ namespace Library.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
-        Book _book;
+       // Book _book;
 
         ObservableCollection<Book> _books;
         public ObservableCollection<Book> Books

@@ -9,6 +9,6 @@ namespace Library.ViewModels
    public class MainWindowViewModel
     {
 
-        public event EventHandler Closing;
+       public event EventHandler Closing;
     }
 }
