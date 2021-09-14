@@ -1,6 +1,5 @@
 ﻿using Library.Models;
 using Library.Repository;
-using Library.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,11 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using WcfServiceLibrary;
 
 namespace Library.ViewModels
 {
-
+    
     public class NewBookViewModel : INotifyPropertyChanged
     {
         private string title;
@@ -21,14 +19,6 @@ namespace Library.ViewModels
         private string publisher;
         private int? publicationDate;
         private string coverArtist;
-        Service1 service1;
-        Reader thisreader;
-
-        public NewBookViewModel(Reader reader)
-        {
-            thisreader = reader;
-            service1 = new Service1();
-        }
 
         private RelayCommand _SaveCommand;
         public event EventHandler Closing;
@@ -97,42 +87,38 @@ namespace Library.ViewModels
                 return _SaveCommand ??
                     (_SaveCommand = new RelayCommand(obj =>
                     {
-                        var book = new Book()
+
+
+                        using (MyAppContext appContext = new MyAppContext())
                         {
-                            Title = this.title,
-                            Ganre = this.ganre,
-                            CoverArtist = this.coverArtist,
-                            Publisher = this.publisher,
-                            PublicationDate = this.publicationDate,
-                            About = this.about
-                        };
-                        service1.newBookViewModel_save(book);
+                            BookRepository bookRepository = new BookRepository(appContext);
+                            //var book = bookRepository.GetAll(u => u.Title == title || u.Edition == Edition).FirstOrDefault();
+
+                            var book = new Book()
+                            {
+                                Title = this.title,
+                                Ganre = this.ganre,
+                                CoverArtist = this.coverArtist,
+                                Publisher = this.publisher,
+                                PublicationDate = this.publicationDate,
+                                About = this.about
+                            };
+
+                            bookRepository.Insert(book);
+                            MessageBox.Show($" {book.Title} !", "New Book", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                        }
+
                     }));
             }
         }
 
-        
+
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string prop)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
-
-        private RelayCommand _back;
-        public RelayCommand Back
-        {
-            get
-            {
-                return _back ??
-                    (_back = new RelayCommand(obj =>
-                    {
-                        CabinetAdmin cabinet = new CabinetAdmin(ref thisreader);
-                        cabinet.Show();
-                        Closing?.Invoke(this, EventArgs.Empty);
-                    }));
-            }
-        }
-       
 
     }
 }

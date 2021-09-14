@@ -57,10 +57,10 @@
                 HorizontalAlignment="Center"  
                 VerticalAlignment="Center"
                 Margin="0">
-                <Button Content="Добавить" Margin="0 20 0 0" Style="{StaticResource BaseButton}" Command="{Binding AddReader}"/>
-                <Button Content="Изменить" Margin="0 20 0 0" Style="{StaticResource BaseButton}" Command="{Binding EditReader}"/>
-                <Button Content="Удалить" Margin="0 20 0 0" Style="{StaticResource BaseButton}" Command="{Binding DeleteReader}"/>
-                <Button Content="Назад"  Margin="0 40 0 0" Style="{StaticResource BaseButton}" Command="{Binding Back}"/>
+                <Button Content="Добавить" Margin="0 20 0 0" Style="{StaticResource BaseButton}"/>
+                <Button Content="Изменить" Margin="0 20 0 0" Style="{StaticResource BaseButton}"/>
+                <Button Content="Удалить" Margin="0 20 0 0" Style="{StaticResource BaseButton}"/>
+                <Button Content="Назад"  Margin="0 40 0 0" Style="{StaticResource BaseButton}" Click="Button_Back"/>
 
             </StackPanel>
         </Grid>

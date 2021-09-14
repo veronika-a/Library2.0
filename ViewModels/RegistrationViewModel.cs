@@ -10,7 +10,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using WcfServiceLibrary;
 
 namespace Library.ViewModels
 {
@@ -18,17 +17,11 @@ namespace Library.ViewModels
     {
         private string email;
         private string password;
-        Service1 service1;
 
         private RelayCommand _signUp;
         public event EventHandler Closing;
 
         public bool Validated = false;
-
-        public RegistrationViewModel()
-        {
-             service1 = new Service1();
-        }
 
         public string Email
         {
@@ -49,6 +42,8 @@ namespace Library.ViewModels
             }
         }
 
+        
+
         public RelayCommand SignUp
         {
             get
@@ -56,21 +51,37 @@ namespace Library.ViewModels
 
                 return _signUp ??
                     (_signUp = new RelayCommand(obj => {
+                       
 
-                        var reader = new Reader()
+                        using (MyAppContext appContext = new MyAppContext())
                         {
-                            Email = this.email,
-                            Password = this.password
-                        };
-                         service1.registrationViewModel_signUp(reader);
+                            //logic of create new account
+                            ReaderRepository readerRepository = new ReaderRepository(appContext);
+                            
+                            var reader = new Reader()
+                            {
+                                Email = this.email,
+                                Password = this.password
+                            };
 
-                        CabinetReader cabinetReader = new CabinetReader(ref reader);
-                        cabinetReader.Show();
-                        Closing?.Invoke(this, EventArgs.Empty);
+                            readerRepository.Insert(reader);
+                           // appContext.SaveChanges();
+
+                            MessageBox.Show($"Welcome, {reader.Email} !", "Welcome", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                            CabinetReader cabinetReader = new CabinetReader(ref reader);
+                            cabinetReader.Show();
+                            
+                            Closing?.Invoke(this, EventArgs.Empty);
+
+                        }
+                          
                     }));
             }
         }
-      
+        
+
+        public RegistrationViewModel() { }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string prop)

@@ -57,13 +57,13 @@
                 HorizontalAlignment="Center"  
                 VerticalAlignment="Center"
                 Margin="0">
-                <Button Content="Добавить" Margin="0 20 0 0" Style="{StaticResource BaseButton}" Command="{Binding AddBook}"/>
+                <Button Content="Добавить" Margin="0 20 0 0" Style="{StaticResource BaseButton}" Click="Button_AddBook"/>
                 <Button Content="Изменить" Margin="0 20 0 0" Style="{StaticResource BaseButton}" Command="{Binding Edit}"
                 IsEnabled="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <Button Content="Удалить" Margin="0 20 0 0" Style="{StaticResource BaseButton}" Command="{Binding Delete}"
                 IsEnabled="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <Button Content="Управление авторами" Margin="0 40 0 0" Style="{StaticResource BaseButton}"/>
-                <Button Content="Назад"  Margin="0 40 0 0" Style="{StaticResource BaseButton}" Command="{Binding Back}"/>
+                <Button Content="Назад"  Margin="0 40 0 0" Style="{StaticResource BaseButton}" />
 
             </StackPanel>
         </Grid>

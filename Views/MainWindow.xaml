@@ -36,8 +36,9 @@
             <Grid Grid.Column="0" >
                 <StackPanel Orientation="Vertical" Width="300" >
 
-                    <Button Content="Вход" Height="50"  Margin="10"   Style="{StaticResource BaseButton}" Click="Button_SingIn"/>
-                    <Button Content="Регистрация" Height="50" Margin="10" Style="{StaticResource BaseButton}"  Click="Button_Registration"/>
+                    <Button Content="Вход" Margin="10"   Style="{StaticResource BaseButton}" Click="Button_SingIn"/>
+                    <Button Content="Регистрация" Margin="10" Style="{StaticResource BaseButton}"  Click="Button_Registration"/>
+                    <Button Content="О нас" x:Name="helloButton"  Style="{StaticResource BaseButton}" Margin="10"/>
 
                 </StackPanel>
             </Grid>

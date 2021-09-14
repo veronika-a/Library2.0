@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using WcfServiceLibrary;
 
 namespace Library.ViewModels
 {
@@ -17,16 +16,11 @@ namespace Library.ViewModels
     {
         private string email;
         private string password;
-        Service1 service1;
+
         private RelayCommand _signIn;
         public event EventHandler Closing;
 
         public bool Validated = false;
-
-        public SingInViewModel()
-        {
-             service1 = new Service1();
-        }
 
         public string Email
         {
@@ -55,30 +49,39 @@ namespace Library.ViewModels
                 return _signIn ??
                     (_signIn = new RelayCommand(obj =>
                     {
-                        var reader = service1.singInViewModel_signIn(email, password);
+                       
 
-                        if (reader != null)
+                        using (MyAppContext appContext = new MyAppContext())
                         {
-                            if (reader.Email != "admin")
-                            {
-                                MessageBox.Show($"Welcome, {reader.Email} !", "Welcome", MessageBoxButton.OK, MessageBoxImage.Information);
+                            ReaderRepository readerRepository = new ReaderRepository(appContext);
+                            var reader = readerRepository.GetAll(u => u.Email == email || u.Password == password).FirstOrDefault();
 
-                                CabinetReader cabinetReader = new CabinetReader(ref reader);
-                                cabinetReader.Show();
-                                Closing?.Invoke(this, EventArgs.Empty);
-                            }
-                            else
+                            if (reader != null)
                             {
-                                CabinetAdmin cabinetAdmin = new CabinetAdmin(ref reader);
-                                cabinetAdmin.Show();
-                                Closing?.Invoke(this, EventArgs.Empty);
+                                if (reader.Email != "admin")
+                                {
+                                    MessageBox.Show($"Welcome, {reader.Email} !", "Welcome", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                                    CabinetReader cabinetReader = new CabinetReader(ref reader);
+                                    cabinetReader.Show();
+                                    Closing?.Invoke(this, EventArgs.Empty);
+                                }
+                                else
+                                {
+                                    CabinetAdmin cabinetAdmin = new CabinetAdmin(ref reader);
+                                    cabinetAdmin.Show();
+                                    Closing?.Invoke(this, EventArgs.Empty);
+                                }
                             }
+
+
+
                         }
+
                     }));
             }
         }
-
-        public object Server1 { get; }
+       
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string prop)

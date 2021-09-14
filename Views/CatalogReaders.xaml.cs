@@ -1,5 +1,4 @@
-﻿using Library.Models;
-using Library.ViewModels;
+﻿using Library.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,15 +21,20 @@ namespace Library.Views
     public partial class CatalogReaders : Window
     {
         
-        CatalogReadersViewModel catalog;
-        public CatalogReaders(ref Reader reader)
+        CatalogReadersViewModel catalog = new CatalogReadersViewModel();
+        public CatalogReaders()
         {
             InitializeComponent();
-            catalog = new CatalogReadersViewModel(reader);
             DataContext = catalog;
 
             catalog.Closing += (s, e) => this.Close();
         }
 
+        private void Button_Back(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            this.Close();
+            mainWindow.Show();
+        }
     }
 }
